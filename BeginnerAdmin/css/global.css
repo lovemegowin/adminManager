@@ -360,7 +360,7 @@ body .site-demo-nav .layui-nav-item{line-height: 40px}
 	    position: absolute;
     top: 64px;
     background-color: white;
-    width: 110px;
+    min-width: 110px;
     border: solid 1px #cccccc;
     border-radius: 3px;
     padding: 5px 0;
