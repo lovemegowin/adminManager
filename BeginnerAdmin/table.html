@@ -7,30 +7,7 @@
 		<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
 		<link rel="stylesheet" href="css/global.css" media="all">
 		<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
-		<style>
-			.site-table tbody tr td {
-				text-align: center;
-			}
-			.site-table tbody tr td .layui-btn+.layui-btn{margin-left: 0px;}
-			.admin-table-page {
-				position: fixed;
-				z-index: 19940201;
-				bottom: 0;
-				width: 100%;
-				background-color: #eee;
-				border-bottom: 1px solid #ddd;
-				left: 0px;
-			}
-			
-			#page .layui-laypage {
-				margin: 6px 0 0 0;
-			}
-			
-			.admin-main {
-				padding: 10px;
-				margin-bottom: 46px;
-			}
-		</style>
+		<link rel="stylesheet" href="css/table.css" />
 	</head>
 
 	<body>
@@ -53,7 +30,7 @@
 			<fieldset class="layui-elem-field">
 				<legend>数据列表</legend>
 				<div class="layui-field-box">
-			<table class="site-table">
+			<table class="site-table table-hover">
 				<thead>
 					<tr>
 						<th>#</th>
@@ -435,7 +412,7 @@
 				</div>
 			</fieldset>
 			<div class="admin-table-page">
-				<div id="page" style="padding-left:20px;">
+				<div id="page" class="page">
 				</div>
 			</div>
 		</div>

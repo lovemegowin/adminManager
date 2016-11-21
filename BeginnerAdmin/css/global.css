@@ -331,7 +331,7 @@ body .site-demo-nav .layui-nav-item{line-height: 40px}
 	font-style: normal;
 }
 
-/*.admin-header-info{
+.admin-header-info{
 	position: absolute;
     z-index: 19940201;
     right: 20px;
@@ -377,13 +377,8 @@ body .site-demo-nav .layui-nav-item{line-height: 40px}
 .admin-header-dropdown-split{
 	border-bottom: solid 1px #cccccc;
     margin: 3px;
-}*/
-.admin-header-user .layui-nav-more{
-	top:33px;
 }
-.admin-header-user .layui-nav-mored{
-	top: 26px;
-}
+
 
 /*table*/
 .site-table tbody tr td {text-align: center;}
@@ -393,4 +388,4 @@ body .site-demo-nav .layui-nav-item{line-height: 40px}
 .admin-table-page .page .layui-laypage {margin: 6px 0 0 0;}
 
 /**/
-.admin-main {margin: 45px;}
+.admin-main {padding: 10px;	margin-bottom: 46px;}
