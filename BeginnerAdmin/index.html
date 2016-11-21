@@ -61,7 +61,7 @@
 									</a>
 								</dd>
 								<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/form.html">
+									<a href="javascript:;" data-url="form.html">
 										<i class="layui-icon" style="top: 2px;">&#xe63c;</i>
 										<cite>表单</cite>
 									</a>
@@ -242,11 +242,13 @@
 									//绑定关闭事件
 									$tabs = $('#admin-tab');
 									var $li = $tabs.find('li');
+									
 									$li.eq($li.length - 1).children('i.layui-tab-close').on('click', function() {
-										element.tabDelete('admin-tab', $(this).parent('li').index());
+										element.tabDelete('admin-tab', $(this).parent('li').index()).init();
 									});
 									//获取焦点
 									element.tabChange('admin-tab', $li.length - 1);
+
 								} else {
 									//切换tab
 									element.tabChange('admin-tab', tabIndex);
