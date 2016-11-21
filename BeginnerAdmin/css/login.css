@@ -1,5 +1,6 @@
 .beg-login-bg {
 	background: url(../Images/login-bg-1.jpg) no-repeat center center fixed;
+	background-color: #393D49;
 }
 
 .beg-login-box {
@@ -82,6 +83,7 @@
 	position: absolute;
 	width: 100px;
 }
+
 .beg-login-code-box img {
 	cursor: pointer;
 	position: absolute;

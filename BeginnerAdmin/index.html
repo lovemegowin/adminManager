@@ -25,26 +25,30 @@
 					<a class="logo" style="left: 0;" href="http://beginner.zhengjinfan.cn/demo/beginner_admin/">
 						<span style="font-size: 22px;">BeginnerAdmin</span>
 					</a>
-					<ul class="admin-header-info">
-						<li class="admin-header-item">
+					<ul class="layui-nav">
+						<li class="layui-nav-item">
+							<a href="javascript:;">清除缓存</a>
+						</li>
+						<li class="layui-nav-item">
 							<a href="#" target="_blank">浏览网站</a>
 						</li>
-						<li class="admin-header-item">
-							<div class="admin-header-user" id="user">
-								<img src="images/0.jpg" />
+						<li class="layui-nav-item">
+							<a href="javascript:;" class="admin-header-user">
+								<img src="images/0.jpg" style="width: 40px; height: 40px; border-radius: 100%;" />
 								<span>beginner</span>
-								<i class="layui-icon">&#xe625;</i>
-							</div>
-							<ul class="admin-header-dropdown" style="display: none;" id="user-item">
-								<li class="admin-header-dropdown-item"><i class="fa fa-user-circle" aria-hidden="true"></i> 个人信息</li>
-								<li class="admin-header-dropdown-item"><i class="fa fa-gear" aria-hidden="true"></i> 设置</li>
-								<li class="admin-header-dropdown-split"></li>
-								<li class="admin-header-dropdown-item"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</li>
-							</ul>
+							</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="javascript:;"><i class="fa fa-user-circle" aria-hidden="true"></i> 个人信息</a>
+								</dd>
+								<dd>
+									<a href="javascript:;"><i class="fa fa-gear" aria-hidden="true"></i> 设置</a>
+								</dd>
+								<dd>
+									<a href="login.html"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
+								</dd>
+							</dl>
 						</li>
-						<!--<li class="admin-header-item">
-							<a href="#">注销</a>
-						</li>-->
 					</ul>
 				</div>
 			</div>
@@ -55,13 +59,13 @@
 							<a href="javascript:;">基本元素</a>
 							<dl class="layui-nav-child">
 								<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/button.html">
+									<a href="javascript:;" data-url="button.html">
 										<i class="layui-icon" style="top: 1px; font-size: 18px;">&#xe641;</i>
 										<cite>按钮</cite>
 									</a>
 								</dd>
 								<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/form.html">
+									<a href="javascript:;" data-url="form.html">
 										<i class="layui-icon" style="top: 2px;">&#xe63c;</i>
 										<cite>表单</cite>
 									</a>
@@ -73,19 +77,19 @@
 									</a>
 								</dd>
 								<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/nav.html">
+									<a href="javascript:;" data-url="nav.html">
 										<i class="layui-icon" style="top: 2px; font-size: 18px;">&#xe609;</i>
 										<cite>导航</cite>
 									</a>
 								</dd>
 								<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/tab.html">
+									<a href="javascript:;" data-url="tab.html">
 										<i class="layui-icon" style="top: 2px; font-size: 16px;">&#xe62a;</i>
 										<cite>Tab选项卡</cite>
 									</a>
 								</dd>
 								<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/auxiliar.html">
+									<a href="javascript:;" data-url="auxiliar.html">
 										<i class="layui-icon" style="top: 2px;">&#xe60c;</i>
 										<cite>辅助性元素</cite>
 									</a>
@@ -96,6 +100,12 @@
 							<a href="javascript:;">官方组件</a>
 							<dl class="layui-nav-child">
 								<dd>
+									<a href="javascript:;" data-url="datatable.html">
+										<i class="layui-icon" >&#xe62d;</i>
+										<cite>Datatable</cite>
+									</a>
+								</dd>
+								<!--<dd>
 									<a href="javascript:;" data-url="http://www.layui.com/demo/layer.html">
 										<i class="layui-icon" style="top: 3px;">&#xe638;</i><cite>弹出层</cite>
 									</a>
@@ -156,21 +166,24 @@
 										<i class="layui-icon" style="top: 1px;">&#xe635;</i>
 										<cite>代码修饰器</cite>
 									</a>
-								</dd>
+								</dd>-->
 							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">这是一级导航</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 			<div class="layui-body" style="bottom: 0;">
-				<div class="layui-tab layui-tab-card admin-nav-card" lay-filter="admin-tab">
+				<div class="layui-tab admin-nav-card" lay-filter="admin-tab">
 					<ul class="layui-tab-title" id="admin-tab">
 						<li class="layui-this">
 							<i class="layui-icon" style="top: 2px; font-size: 16px;">&#xe609;</i>
 							<cite>控制台</cite>
 						</li>
 					</ul>
-					<div class="layui-tab-content" style="min-height: 150px; padding: 0px;" id="admin-tab-container">
+					<div class="layui-tab-content" style="min-height: 150px; padding: 5px 0 0 0;" id="admin-tab-container">
 						<div class="layui-tab-item layui-show">
 							<iframe src="main.html"></iframe>
 						</div>
@@ -242,11 +255,13 @@
 									//绑定关闭事件
 									$tabs = $('#admin-tab');
 									var $li = $tabs.find('li');
+
 									$li.eq($li.length - 1).children('i.layui-tab-close').on('click', function() {
-										element.tabDelete('admin-tab', $(this).parent('li').index());
+										element.tabDelete('admin-tab', $(this).parent('li').index()).init();
 									});
 									//获取焦点
 									element.tabChange('admin-tab', $li.length - 1);
+
 								} else {
 									//切换tab
 									element.tabChange('admin-tab', tabIndex);
