@@ -448,17 +448,26 @@
 				$('#search').on('click', function() {
 					parent.layer.alert('你点击了搜索按钮')
 				});
-
+				
+				
 				$('.site-table tbody tr').on('click', function(event) {
 					var $this = $(this);
 					var $input = $this.children('td').eq(0).find('input');
 					$input.on('ifChecked', function(e) {
-						$this.css('background-color', '#EEEEEE')
+						$this.css('background-color', '#EEEEEE');
 					});
 					$input.on('ifUnchecked', function(e) {
 						$this.removeAttr('style');
 					});
 					$input.iCheck('toggle');
+				}).find('input').each(function(){
+					var $this = $(this);
+					$this.on('ifChecked', function(e) {
+						$this.parents('tr').css('background-color', '#EEEEEE');
+					});
+					$this.on('ifUnchecked', function(e) {
+						$this.parents('tr').removeAttr('style');
+					});
 				});
 				$('#selected-all').on('ifChanged', function(event) {
 					var $input = $('.site-table tbody tr td').find('input');
