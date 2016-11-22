@@ -449,7 +449,7 @@
 					parent.layer.alert('你点击了搜索按钮')
 				});
 
-				$('.site-table tbody tr').on('click', function() {
+				$('.site-table tbody tr').on('click', function(event) {
 					var $this = $(this);
 					var $input = $this.children('td').eq(0).find('input');
 					$input.on('ifChecked', function(e) {
