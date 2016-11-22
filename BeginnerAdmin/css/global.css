@@ -330,55 +330,12 @@ body .site-demo-nav .layui-nav-item{line-height: 40px}
 .admin-nav-card .layui-tab-title cite{
 	font-style: normal;
 }
-
-.admin-header-info{
-	position: absolute;
-    z-index: 19940201;
-    right: 20px;
-    top: 0;
-    color: black;
-    height: 10px;
+.admin-header-user .layui-nav-more{
+	top:33px;
 }
-.admin-header-info .admin-header-item{
-	float: left;
-    padding: 0 10px;
-    line-height: 70px;
+.admin-header-user .layui-nav-mored{
+	top: 26px;
 }
-.admin-header-user{
-	cursor: pointer;
-}
-.admin-header-user img{
-	width: 40px; height: 40px; border-radius: 100%;
-}
-.admin-header-user span{
-	padding-left:5px;
-}
-.admin-header-user i{
-	position: relative;top: 2px;
-}
-.admin-header-dropdown{
-	    position: absolute;
-    top: 64px;
-    background-color: white;
-    min-width: 110px;
-    border: solid 1px #cccccc;
-    border-radius: 3px;
-    padding: 5px 0;
-}
-.admin-header-dropdown .admin-header-dropdown-item{
-	height: 20px;
-    line-height: 20px;
-    padding: 5.5px;
-}
-.admin-header-dropdown .admin-header-dropdown-item:hover{
-	background-color: #f2f2f2;
-	cursor: pointer;
-}
-.admin-header-dropdown-split{
-	border-bottom: solid 1px #cccccc;
-    margin: 3px;
-}
-
 
 /*table*/
 .site-table tbody tr td {text-align: center;}
@@ -388,4 +345,4 @@ body .site-demo-nav .layui-nav-item{line-height: 40px}
 .admin-table-page .page .layui-laypage {margin: 6px 0 0 0;}
 
 /**/
-.admin-main {padding: 10px;	margin-bottom: 46px;}
+.admin-main {margin: 45px;}
