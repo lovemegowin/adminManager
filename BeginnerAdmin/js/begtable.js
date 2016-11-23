@@ -33,10 +33,11 @@ layui.define(['layer', 'laypage', 'icheck'], function(exports) {
 			data: undefined, //数据
 			identity: undefined, // 标识字段
 			paged: true, //启用分页功能
-			pageSet:{
-				jump:undefined, // 
-				groups:5,
-			}//分页设置
+			type: 'get', //远程读取数据的方式
+			pageSet: {
+				jump: undefined, // 
+				groups: 5,
+			} //分页设置
 		};
 	};
 	/**
@@ -119,37 +120,57 @@ layui.define(['layer', 'laypage', 'icheck'], function(exports) {
 		$container.html('<div class="beg-table-box"><div class="beg-table-body">' + tableTemp + '</div></div>');
 		//checkbox
 		if(_config.checked) {
-			//渲染check
+			//渲染checkbox
 			$container.find('input[type=checkbox]').iCheck({
 				checkboxClass: _config.checkboxClass
 			});
 		}
 		//分页
 		if(_config.paged) {
-			$container.children('.beg-table-box').append('<div class="beg-table-paged"></div>');
-			laypage({
-				cont: $container.find('.beg-table-paged'),
-				pages: 25, //总页数					
-				groups: 5, //连续显示分页数					
-				jump: function(obj, first) {
-					//得到了当前页，用于向服务端请求对应数据
-					var curr = obj.curr;
-					if(!first) {
-						//layer.msg('第 '+ obj.curr +' 页');
-					}
-				}
-			});
+			var $tableBox = $container.children('.beg-table-box');
+			$tableBox.append('<div class="beg-table-paged"></div>');
+			loadData($tableBox, 1);
 		} else {
 			$container.find('.' + ELEM.table).css('margin-bottom', '0px');
 		}
 
-		msgErrorTips('请对begtable返回正确的JSON字符');
+		//msgErrorTips('请对begtable返回正确的JSON字符');
 		return _that;
 	};
+	begTable.prototype.getConfig = function() {
+		return this.config;
+	};
 	/**
-	 * 抛出一个异常错误信息
-	 * @param {String} msg
+	 * 加载数据
+	 * @param {Object} $tableBox
+	 * @param {Number} page
 	 */
+	function($tableBox, page) {
+			var that = '';
+			$.ajax({
+				type: that.config.type,
+				success: function(result) {
+					laypage({
+						cont: $tableBox.find('.beg-table-paged'),
+						curr: page,
+						pages: 25, //总页数
+						groups: 5, //连续显示分页数					
+						jump: function(obj, first) {
+							//得到了当前页，用于向服务端请求对应数据
+							var curr = obj.curr;
+							if(!first) {
+								//layer.msg('第 '+ obj.curr +' 页');
+								that.loadData()
+							}
+						}
+					});
+				}
+			});
+		}
+		/**
+		 * 抛出一个异常错误信息
+		 * @param {String} msg
+		 */
 	function throwError(msg) {
 		throw new Error('betTable error:' + msg);
 		return;
