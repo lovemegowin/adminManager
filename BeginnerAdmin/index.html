@@ -179,6 +179,9 @@
 							<a href="javascript:;">这是一级导航</a>
 						</li>
 					</ul>
+					<ul class="layui-nav layui-nav-tree" id="dynamic">
+
+					</ul>
 				</div>
 			</div>
 			<div class="layui-body" style="bottom: 0;">
@@ -222,6 +225,29 @@
 							$(this).height($content.height());
 						});
 					}).resize();
+
+					//渲染nav
+					$.getJSON('datas/nav.json', null, function(data) {
+						var li = '';
+						for(var i = 0; i < data.length; i++) {
+							li += '<li class="layui-nav-item  layui-nav-itemed"><a href="javascript:;">' + data[i].title + '</a>'
+							if(data[i].child !== undefined && data[i].child.length > 0) {
+								li += '<dl class="layui-nav-child">'
+								for(var j = 0; j < data[i].child.length; j++) {
+									li += '<dd>' +
+										'<a href="javascript:;" data-url="' + data[i].child[j].url + '">' +
+										'<i class="fa ' + data[i].child[j].icon + '" aria-hidden="true"></i>' +
+										'<cite>' + data[i].child[j].title + '</cite>' +
+										'</a>' +
+										'</dd>';
+								}
+								li += '</dl>';
+							}
+							li += '</li>';
+						}
+						$('#dynamic').html(li);
+						element.init();
+					});
 
 					//添加tab
 					var $tabs = $('#admin-tab');

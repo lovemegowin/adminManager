@@ -145,32 +145,33 @@ layui.define(['layer', 'laypage', 'icheck'], function(exports) {
 	 * @param {Object} $tableBox
 	 * @param {Number} page
 	 */
-	function($tableBox, page) {
-			var that = '';
-			$.ajax({
-				type: that.config.type,
-				success: function(result) {
-					laypage({
-						cont: $tableBox.find('.beg-table-paged'),
-						curr: page,
-						pages: 25, //总页数
-						groups: 5, //连续显示分页数					
-						jump: function(obj, first) {
-							//得到了当前页，用于向服务端请求对应数据
-							var curr = obj.curr;
-							if(!first) {
-								//layer.msg('第 '+ obj.curr +' 页');
-								that.loadData()
-							}
-						}
-					});
+	function loadData($tableBox, page) {
+		//var that = '';
+		/*$.ajax({
+			type: that.config.type,
+			success: function(result) {
+
+			}
+		});*/
+		laypage({
+			cont: $tableBox.find('.beg-table-paged'),
+			curr: page,
+			pages: 25, //总页数
+			groups: 5, //连续显示分页数					
+			jump: function(obj, first) {
+				//得到了当前页，用于向服务端请求对应数据
+				var curr = obj.curr;
+				if(!first) {
+					//layer.msg('第 '+ obj.curr +' 页');
+					that.loadData()
 				}
-			});
-		}
-		/**
-		 * 抛出一个异常错误信息
-		 * @param {String} msg
-		 */
+			}
+		});
+	}
+	/**
+	 * 抛出一个异常错误信息
+	 * @param {String} msg
+	 */
 	function throwError(msg) {
 		throw new Error('betTable error:' + msg);
 		return;
