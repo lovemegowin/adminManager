@@ -111,6 +111,12 @@
 										<cite>iCheck组件</cite>
 									</a>
 								</dd>
+								<dd>
+									<a href="javascript:;" data-url="navbar.html">
+										<i class="fa fa-check-square-o" aria-hidden="true"></i>
+										<cite>Navbar组件</cite>
+									</a>
+								</dd>
 								<!--<dd>
 									<a href="javascript:;" data-url="http://www.layui.com/demo/layer.html">
 										<i class="layui-icon" style="top: 3px;">&#xe638;</i><cite>弹出层</cite>
@@ -176,11 +182,11 @@
 							</dl>
 						</li>
 						<li class="layui-nav-item">
-							<a href="javascript:;">这是一级导航</a>
+							<a href="javascript:;" data-url="navbar.html">
+								<i class="layui-icon">&#xe631;</i>
+								<cite>这是一级导航</cite>
+							</a>
 						</li>
-					</ul>
-					<ul class="layui-nav layui-nav-tree" id="dynamic">
-
 					</ul>
 				</div>
 			</div>
@@ -212,11 +218,15 @@
 			<div class="site-mobile-shade"></div>
 			<script type="text/javascript" src="plugins/layui/layui.js"></script>
 			<script>
-				layui.use(['element', 'layer'], function() {
+				layui.config({
+					base: 'js/'
+				}).use(['element', 'layer', 'navbar'], function() {
 					var element = layui.element(),
 						$ = layui.jquery,
-						layer = layui.layer;
+						layer = layui.layer,
+						navbar = layui.navbar();
 
+					//navbar.render();
 					//iframe自适应
 					$(window).on('resize', function() {
 						var $content = $('.admin-nav-card .layui-tab-content');
@@ -225,29 +235,6 @@
 							$(this).height($content.height());
 						});
 					}).resize();
-
-					//渲染nav
-					$.getJSON('datas/nav.json', null, function(data) {
-						var li = '';
-						for(var i = 0; i < data.length; i++) {
-							li += '<li class="layui-nav-item  layui-nav-itemed"><a href="javascript:;">' + data[i].title + '</a>'
-							if(data[i].child !== undefined && data[i].child.length > 0) {
-								li += '<dl class="layui-nav-child">'
-								for(var j = 0; j < data[i].child.length; j++) {
-									li += '<dd>' +
-										'<a href="javascript:;" data-url="' + data[i].child[j].url + '">' +
-										'<i class="fa ' + data[i].child[j].icon + '" aria-hidden="true"></i>' +
-										'<cite>' + data[i].child[j].title + '</cite>' +
-										'</a>' +
-										'</dd>';
-								}
-								li += '</dl>';
-							}
-							li += '</li>';
-						}
-						$('#dynamic').html(li);
-						element.init();
-					});
 
 					//添加tab
 					var $tabs = $('#admin-tab');

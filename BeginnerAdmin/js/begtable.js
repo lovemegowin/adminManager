@@ -6,7 +6,6 @@ layui.define(['layer', 'laypage', 'icheck'], function(exports) {
 	var $ = layui.jquery,
 		layer = parent.layer === undefined ? layui.layer : parent.layer,
 		laypage = layui.laypage;
-
 	/**
 	 * @description begtable元素
 	 */

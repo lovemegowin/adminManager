@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Navbar</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+
+		<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="css/global.css" media="all">
+		<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+	</head>
+
+	<body>
+		<div style="margin: 15px;">
+			<div class="navbar" style="float: left; width: 20%;"></div>
+			<div style="float: left; width: 35%; height: 100%;">
+						<pre class="layui-code">
+						//调用的代码
+						layui.config({
+						    base: 'js/'
+						}).use(['navbar', 'code'], function() {
+						    var navbar = layui.navbar(),
+						        $ = layui.jquery;
+						    layui.code();
+						    $.getJSON('datas/nav.json', null, function(data) {
+						        navbar.set({
+							        elem: '.navbar',
+							        data: data
+						        }).render();
+						    });			
+						});
+						</pre>
+			</div>
+			<div style="float: left; width: 45%;">
+				<pre class="layui-code">
+						//数据结构
+						[
+						    {
+						        "title": "这是动态渲染的", //标题
+						        "icon": "&#x1002;",       //图标，支持layui-icon 和 font-awesome
+						        "href": "",               //跳转的地址，如果有字节点，该地址将无效
+						        "spread":true,            //默认展开
+						        "children": [             //子项 
+						            {
+						                "title": "表单",
+						                "icon": "&#xe62a;",
+						                "href": "form.html"
+						            }
+						            //...
+						        ]   
+						    }, {
+						        "title": "地址本",
+						        "icon": "fa-address-book",
+						        "href": "",
+						        "spread":false,
+						        "children": [
+						            {
+						                "title": "Github",
+						                "icon": "fa-github",
+						                "href": "https://www.github.com/"
+						            },
+						            {
+						                "title": "QQ",
+						                "icon": "fa-qq",
+						                "href": "http://www.qq.com/"
+						            },
+						            {
+						                "title": "Fly社区",
+						                "icon": "&#xe609;",
+						                "href": "http://fly.layui.com/"
+						            }
+						            //...
+						        ] 
+						    }, {
+						        "title": "33333",
+						        "icon": "",
+						        "href": "",		
+						        "spread":false
+						    }
+						]
+				</pre>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<script type="text/javascript" src="plugins/layui/layui.js"></script>
+		<script>
+			layui.config({
+				base: 'js/'
+			}).use(['navbar', 'code'], function() {
+				var navbar = layui.navbar(),
+					$ = layui.jquery;
+				layui.code();
+				$.getJSON('datas/nav.json', null, function(data) {
+					console.log(data);
+					navbar.set({
+						elem: '.navbar',
+						data: data
+					}).render();
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

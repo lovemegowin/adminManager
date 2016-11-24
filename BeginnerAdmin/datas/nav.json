@@ -1,18 +1,39 @@
-[{
-	"title":"这是动态渲染的",
-	"icon":"",
-	"url":"",
-	"child":[{
-		"title":"表单",
-		"icon":"fa-check-square-o",
-		"url":"form.html"
-	},{
-		"title":"表格",
-		"icon":"fa-check-square-o",
-		"url":"table.html"
-	},{
-		"title":"按钮",
-		"icon":"fa-check-square-o",
-		"url":"button.html"
-	}]
-}]
+[
+	{
+		"title": "这是动态渲染的",
+		"icon": "&#x1002;", 
+		"spread": true,
+		"children": [
+			{
+				"title": "表单",
+				"icon": "&#xe62a;",
+				"href": "form.html"
+			}
+		]
+	}, {
+		"title": "地址本",
+		"icon": "fa-address-book",
+		"href": "",
+		"spread": false,
+		"children": [
+			{
+				"title": "Github",
+				"icon": "fa-github",
+				"href": "https://www.github.com/"
+			}, {
+				"title": "QQ",
+				"icon": "fa-qq",
+				"href": "http://www.qq.com/"
+			}, {
+				"title": "Fly社区",
+				"icon": "&#xe609;",
+				"href": "http://fly.layui.com/"
+			}
+		]
+	}, {
+		"title": "33333",
+		"icon": "fa-stop-circle",
+		"href": "",
+		"spread": false
+	}
+]
