@@ -1,7 +1,7 @@
 [
 	{
 		"title": "基本元素",
-		"icon": "&#x1002;",
+		"icon": "fa-cubes",
 		"spread": true,
 		"children": [
 			{
@@ -32,7 +32,7 @@
 		]
 	}, {
 		"title": "组件",
-		"icon": "&#x1002;",
+		"icon": "fa-cogs",
 		"spread": false,
 		"children": [
 			{
@@ -45,7 +45,7 @@
 				"href": "http://www.bootcss.com/p/icheck/"
 			},{
 				"title": "Navbar组件",
-				"icon": "fa-check-square-o",
+				"icon": "fa-navicon",
 				"href": "navbar.html"
 			}
 		]
@@ -78,6 +78,10 @@
 				"title": "Fly社区",
 				"icon": "&#xe609;",
 				"href": "http://fly.layui.com/"
+			}, {
+				"title": "新浪微博",
+				"icon": "fa-weibo",
+				"href": "http://weibo.com/"
 			}
 		]
 	}, {
