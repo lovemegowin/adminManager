@@ -18,27 +18,91 @@
 
 	<body>
 		<div style="margin: 15px;">
-			<div class="navbar" style="float: left; width: 20%;"></div>
-			<div style="float: left; width: 35%; height: 100%;">
-						<pre class="layui-code">
-						//调用的代码
+			<blockquote class="layui-elem-quote">
+				<h1>Navbar 组件 (动态渲染)</h1></blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>演示</legend>
+				<div class="layui-field-box">
+					<div id="nav" lay-filter="demo"></div>
+					<pre class="layui-code">
+						//示例代码
+						//html
+						&lt;div id=&quot;nav&quot; lay-filter=&quot;demo&quot;&gt;&lt;/div&gt;
+						//js
 						layui.config({
 						    base: 'js/'
-						}).use(['navbar', 'code'], function() {
-						    var navbar = layui.navbar(),
-						        $ = layui.jquery;
-						    layui.code();
-						    $.getJSON('datas/nav.json', null, function(data) {
-						        navbar.set({
-							        elem: '.navbar',
-							        data: data
-						        }).render();
-						    });			
+						}).use('navbar', function() {
+						    var navbar = layui.navbar();
+						    navbar.set({
+						        elem: '#nav',
+						        url: 'datas/nav.json'
+						    });
+						    navbar.render();
+						    navbar.on('click(demo)', function(data) {
+						        layui.layer.msg(data.field.href);
+						    });		
 						});
 						</pre>
-			</div>
-			<div style="float: left; width: 45%;">
-				<pre class="layui-code">
+				</div>
+			</fieldset>
+			<fieldset class="layui-elem-field">
+				<legend>参数</legend>
+				<div class="layui-field-box">
+					<table class="layui-table">
+						<thead>
+							<tr>
+								<th>属性名称</th>
+								<th>类型</th>
+								<th>默认值</th>
+								<th>描述</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="text-align: center;">elem</td>
+								<td style="text-align: center;">string/object</td>
+								<td style="text-align: center;">undefined</td>
+								<td>
+									<p>存在组件的容器，支持类名、ID名 和Jquery对象.</p>
+									<p>举个栗子：</p>
+									<p>1. elem:'.nav'</p>
+									<p>2. elem:'#nav'</p>
+									<p>3. elem:$('.nav')</p>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">data</td>
+								<td style="text-align: center;">object</td>
+								<td style="text-align: center;">undefined</td>
+								<td>
+									<p>提供给组件的数据列表，请严格按照规定格式提供。</p>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">url</td>
+								<td style="text-align: center;">string</td>
+								<td style="text-align: center;">undefined</td>
+								<td>
+									<p>提供数据源远程的URL,当前只支持同步的方式读取数据</p>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">type</td>
+								<td style="text-align: center;">string</td>
+								<td style="text-align: center;">GET</td>
+								<td>
+									<p>请求的方式，可选参数：GET、POST</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</fieldset>
+			<fieldset class="layui-elem-field">
+				<legend>数据结构</legend>
+				<div class="layui-field-box">
+					<p>请严格按照以下数据结构设置数据</p>
+					<pre class="layui-code">
 						//数据结构
 						[
 						    {
@@ -85,8 +149,8 @@
 						    }
 						]
 				</pre>
-			</div>
-			<div style="clear: both;"></div>
+				</div>
+			</fieldset>
 		</div>
 		<script type="text/javascript" src="plugins/layui/layui.js"></script>
 		<script>
@@ -96,14 +160,21 @@
 				var navbar = layui.navbar(),
 					$ = layui.jquery;
 				layui.code();
-				$.getJSON('datas/nav.json', null, function(data) {
+				/*$.getJSON('datas/nav.json', null, function(data) {
 					console.log(data);
 					navbar.set({
 						elem: '.navbar',
 						data: data
 					}).render();
+				});*/
+				navbar.set({
+					elem: '#nav',
+					url: 'datas/nav.json'
 				});
-
+				navbar.render();
+				navbar.on('click(demo)', function(data) {
+					layui.layer.msg(data.field.href);
+				});
 			});
 		</script>
 	</body>
