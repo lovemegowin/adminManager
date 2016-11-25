@@ -47,13 +47,12 @@ layui.config({
 			$.ajax({
 				type: _config.type,
 				url: _config.url,
-				async: false,//_config.async,
+				async: false, //_config.async,
 				dataType: 'json',
 				success: function(result, status, xhr) {
 					var html = getHtml(result);
 					$container.html(html);
 					element.init();
-					_that.config.isLoadSuccess = true;
 				},
 				error: function(xhr, status, error) {
 					common.msgError('Navbar error:' + error);
@@ -77,9 +76,6 @@ layui.config({
 	Navbar.prototype.on = function(events, callback) {
 		var that = this;
 		var _con = that.config.elem;
-		/*setTimeout(function() {
-			console.log(that.config.isLoadSuccess)
-		}, 2000);*/
 		if(typeof(events) !== 'string') {
 			common.throwError('Navbar error:事件名配置出错，请参考API文档.');
 		}
@@ -128,14 +124,7 @@ layui.config({
 				});
 			}
 		}
-		//callback('aa');
-
-		//return layui.onevent('navbar',events,callback);
 	};
-
-	function bindEvent($navbar, events, callback) {
-
-	}
 	/**
 	 * 获取html字符串
 	 * @param {Object} data
@@ -143,7 +132,11 @@ layui.config({
 	function getHtml(data) {
 		var ulHtml = '<ul class="layui-nav layui-nav-tree">';
 		for(var i = 0; i < data.length; i++) {
-			ulHtml += '<li class="layui-nav-item">';
+			if(data[i].spread) {
+				ulHtml += '<li class="layui-nav-item layui-nav-itemed">';
+			} else {
+				ulHtml += '<li class="layui-nav-item">';
+			}
 			if(data[i].children !== undefined && data[i].children.length > 0) {
 				ulHtml += '<a href="javascript:;">';
 				if(data[i].icon !== undefined && data[i].icon !== '') {

@@ -22,9 +22,14 @@
 		<div class="layui-layout layui-layout-admin">
 			<div class="layui-header header header-demo">
 				<div class="layui-main">
-					<a class="logo" style="left: 0;" href="http://beginner.zhengjinfan.cn/demo/beginner_admin/">
-						<span style="font-size: 22px;">BeginnerAdmin</span>
-					</a>
+					<div class="admin-login-box">
+						<a class="logo" style="left: 0;" href="http://beginner.zhengjinfan.cn/demo/beginner_admin/">
+							<span style="font-size: 22px;">BeginnerAdmin</span>
+						</a>
+						<div class="admin-side-toggle">
+							<i class="fa fa-bars" aria-hidden="true"></i>
+						</div>
+					</div>
 					<ul class="layui-nav">
 						<li class="layui-nav-item">
 							<a href="javascript:;">清除缓存</a>
@@ -52,153 +57,18 @@
 					</ul>
 				</div>
 			</div>
-			<div class="layui-side layui-bg-black">
-				<div class="layui-side-scroll">
-					<ul class="layui-nav layui-nav-tree admin-nav-tree">
-						<li class="layui-nav-item layui-nav-itemed">
-							<a href="javascript:;">基本元素</a>
-							<dl class="layui-nav-child">
-								<dd>
-									<a href="javascript:;" data-url="button.html">
-										<i class="layui-icon" style="top: 1px; font-size: 18px;">&#xe641;</i>
-										<cite>按钮</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="form.html">
-										<i class="layui-icon" style="top: 2px;">&#xe63c;</i>
-										<cite>表单</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="table.html">
-										<i class="layui-icon" style="top: 2px;">&#xe63c;</i>
-										<cite>表格</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="nav.html">
-										<i class="layui-icon" style="top: 2px; font-size: 18px;">&#xe609;</i>
-										<cite>导航</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="tab.html">
-										<i class="layui-icon" style="top: 2px; font-size: 16px;">&#xe62a;</i>
-										<cite>Tab选项卡</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="auxiliar.html">
-										<i class="layui-icon" style="top: 2px;">&#xe60c;</i>
-										<cite>辅助性元素</cite>
-									</a>
-								</dd>
-							</dl>
-						</li>
-						<li class="layui-nav-item layui-nav-itemed">
-							<a href="javascript:;">官方组件</a>
-							<dl class="layui-nav-child">
-								<dd>
-									<a href="javascript:;" data-url="begtable.html">
-										<i class="fa fa-table" aria-hidden="true"></i>
-										<cite>Datatable</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="http://www.bootcss.com/p/icheck/">
-										<i class="fa fa-check-square-o" aria-hidden="true"></i>
-										<cite>iCheck组件</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="navbar.html">
-										<i class="fa fa-check-square-o" aria-hidden="true"></i>
-										<cite>Navbar组件</cite>
-									</a>
-								</dd>
-								<!--<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/layer.html">
-										<i class="layui-icon" style="top: 3px;">&#xe638;</i><cite>弹出层</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/layim.html">
-										<i class="layui-icon" style="position: relative; top: 3px;">&#xe63a;</i>
-										<cite>即时通讯</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/laydate.html">
-										<i class="layui-icon" style="top: 1px;">&#xe637;</i><cite>日期时间选择</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/laypage.html">
-										<i class="layui-icon">&#xe633;</i><cite>多功能分页</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/laytpl.html">
-										<i class="layui-icon">&#xe628;</i><cite>模板引擎</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/layedit.html">
-										<i class="layui-icon">&#xe639;</i>
-										<cite>富文本编辑器</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/upload.html">
-										<i class="layui-icon">&#xe62f;</i>
-										<cite>文件上传</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/tree.html">
-										<i class="layui-icon">&#xe62e;</i>
-										<cite>树形菜单</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/util.html">
-										<i class="layui-icon">&#xe631;</i>
-										<cite>工具块</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/flow.html">
-										<i class="layui-icon">&#xe636;</i>
-										<cite>流加载</cite>
-									</a>
-								</dd>
-								<dd>
-									<a href="javascript:;" data-url="http://www.layui.com/demo/code.html">
-										<i class="layui-icon" style="top: 1px;">&#xe635;</i>
-										<cite>代码修饰器</cite>
-									</a>
-								</dd>-->
-							</dl>
-						</li>
-						<li class="layui-nav-item">
-							<a href="javascript:;" data-url="navbar.html">
-								<i class="layui-icon">&#xe631;</i>
-								<cite>这是一级导航</cite>
-							</a>
-						</li>
-					</ul>
-				</div>
+			<div class="layui-side layui-bg-black" id="admin-side">
+				<div class="layui-side-scroll" id="admin-navbar-side" lay-filter="side"></div>
 			</div>
-			<div class="layui-body" style="bottom: 0;">
+			<div class="layui-body" style="bottom: 0;border: solid 2px #1AA094;" id="admin-body">
 				<div class="layui-tab admin-nav-card" lay-filter="admin-tab">
-					<ul class="layui-tab-title" id="admin-tab">
+					<ul class="layui-tab-title">
 						<li class="layui-this">
 							<i class="layui-icon" style="top: 2px; font-size: 16px;">&#xe609;</i>
 							<cite>控制台</cite>
 						</li>
 					</ul>
-					<div class="layui-tab-content" style="min-height: 150px; padding: 5px 0 0 0;" id="admin-tab-container">
+					<div class="layui-tab-content" style="min-height: 150px; padding: 5px 0 0 0;">
 						<div class="layui-tab-item layui-show">
 							<iframe src="main.html"></iframe>
 						</div>
@@ -235,61 +105,76 @@
 							$(this).height($content.height());
 						});
 					}).resize();
-
-					//添加tab
-					var $tabs = $('#admin-tab');
-					var $container = $('#admin-tab-container');
-					//绑定 nav 点击事件
-					$('ul.admin-nav-tree').find('dd > a').each(function() {
-						var $this = $(this);
-						//获取设定的url
-						var url = $this.data('url');
-						if(url !== undefined) {
-							$this.on('click', function() {
-								var iframe = '<iframe src="' + url + '"></iframe>';
-								var aHtml = $this.html();
-								var count = 0;
-								var tabIndex;
-								$tabs.find('li').each(function(i, e) {
-									var $cite = $(this).children('cite');
-									if($cite.text() === $this.find('cite').text()) {
-										count++;
-										tabIndex = i;
-									};
-								});
-								//tab不存在
-								if(count === 0) {
-									//添加删除样式
-									aHtml += '<i class="layui-icon layui-unselect layui-tab-close">&#x1006;</i>';
-									//添加tab
-									element.tabAdd('admin-tab', {
-										title: aHtml,
-										content: iframe
-									});
-									//iframe 自适应
-									var $content = $('.admin-nav-card .layui-tab-content');
-									$content.find('iframe').each(function() {
-										$(this).height($content.height());
-									});
-									//绑定关闭事件
-									$tabs = $('#admin-tab');
-									var $li = $tabs.find('li');
-									$li.eq($li.length - 1).children('i.layui-tab-close').on('click', function() {
-										element.tabDelete('admin-tab', $(this).parent('li').index()).init();
-									});
-									//获取焦点
-									element.tabChange('admin-tab', $li.length - 1);
-
-								} else {
-									//切换tab
-									element.tabChange('admin-tab', tabIndex);
-								}
+					//设置navbar
+					navbar.set({
+						elem: '#admin-navbar-side',
+						url: 'datas/nav.json'
+					});
+					//渲染navbar
+					navbar.render();
+					var $body = $('.admin-nav-card');
+					var $tabs = $body.children('ul.layui-tab-title');
+					var $contents = $body.children('div.layui-tab-content');
+					var tabFilter = 'admin-tab';
+					//监听点击事件
+					navbar.on('click(side)', function(data) {
+						var href = data.field.href;
+						if(href === undefined || href === '') {
+							return;
+						}
+						var iframe = '<iframe src="' + href + '"></iframe>';
+						var html = data.elem.html();
+						var count = 0;
+						var tabIndex;
+						console.log($tabs);
+						$tabs.find('li').each(function(i, e) {
+							var $cite = $(this).children('cite');
+							if($cite.text() === data.elem.find('cite').text()) {
+								count++;
+								tabIndex = i;
+							};
+						});
+						//tab不存在
+						if(count === 0) {
+							//添加删除样式
+							html += '<i class="layui-icon layui-unselect layui-tab-close">&#x1006;</i>';
+							//添加tab
+							element.tabAdd(tabFilter, {
+								title: html,
+								content: iframe
 							});
+							//iframe 自适应
+							var $content = $('.admin-nav-card .layui-tab-content');
+							$content.find('iframe').each(function() {
+								$(this).height($content.height());
+							});
+							//绑定关闭事件
+							$tabs = $body.children('ul.layui-tab-title');
+							var $li = $tabs.find('li');
+							$li.eq($li.length - 1).children('i.layui-tab-close').on('click', function() {
+								element.tabDelete(tabFilter, $(this).parent('li').index()).init();
+							});
+							//获取焦点
+							element.tabChange(tabFilter, $li.length - 1);
+
+						} else {
+							//切换tab
+							element.tabChange(tabFilter, tabIndex);
 						}
 					});
 
-					$('#user').on('click', function() {
-						$('#user-item').toggle();
+					$('.admin-side-toggle').on('click', function() {
+						console.log($('#admin-side').width());
+						console.log($('#admin-body').css('left'));
+						var sideWidth = $('#admin-side').width();
+						if(sideWidth === 200) {
+							$('#admin-side').width(0);
+							$('#admin-body').css('left', '0');
+						} else {
+							$('#admin-side').width(200);
+							$('#admin-body').css('left', '200px');
+						}
+
 					});
 
 					//手机设备的简单适配

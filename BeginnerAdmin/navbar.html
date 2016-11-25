@@ -158,22 +158,16 @@
 				base: 'js/'
 			}).use(['navbar', 'code'], function() {
 				var navbar = layui.navbar(),
+					layer = parent.layer === undefined ? layui.layer : parent.layer,
 					$ = layui.jquery;
 				layui.code();
-				/*$.getJSON('datas/nav.json', null, function(data) {
-					console.log(data);
-					navbar.set({
-						elem: '.navbar',
-						data: data
-					}).render();
-				});*/
 				navbar.set({
 					elem: '#nav',
 					url: 'datas/nav.json'
 				});
 				navbar.render();
 				navbar.on('click(demo)', function(data) {
-					layui.layer.msg(data.field.href);
+					layer.msg(data.field.href);
 				});
 			});
 		</script>

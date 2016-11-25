@@ -1,8 +1,58 @@
 [
 	{
-		"title": "这是动态渲染的",
-		"icon": "&#x1002;", 
+		"title": "基本元素",
+		"icon": "&#x1002;",
 		"spread": true,
+		"children": [
+			{
+				"title": "按钮",
+				"icon": "&#xe641;",
+				"href": "button.html"
+			}, {
+				"title": "表单",
+				"icon": "&#xe63c;",
+				"href": "form.html"
+			}, {
+				"title": "表格",
+				"icon": "&#xe63c;",
+				"href": "table.html"
+			}, {
+				"title": "导航",
+				"icon": "&#xe609;",
+				"href": "nav.html"
+			}, {
+				"title": "Tab选项卡",
+				"icon": "&#xe62a;",
+				"href": "tab.html"
+			}, {
+				"title": "辅助性元素",
+				"icon": "&#xe60c;",
+				"href": "auxiliar.html"
+			}
+		]
+	}, {
+		"title": "组件",
+		"icon": "&#x1002;",
+		"spread": false,
+		"children": [
+			{
+				"title": "Datatable",
+				"icon": "fa-table",
+				"href": "begtable.html"
+			},{
+				"title": "iCheck组件",
+				"icon": "fa-check-square-o",
+				"href": "http://www.bootcss.com/p/icheck/"
+			},{
+				"title": "Navbar组件",
+				"icon": "fa-check-square-o",
+				"href": "navbar.html"
+			}
+		]
+	}, {
+		"title": "这是动态渲染的",
+		"icon": "&#x1002;",
+		"spread": false,
 		"children": [
 			{
 				"title": "表单",
@@ -14,7 +64,7 @@
 		"title": "地址本",
 		"icon": "fa-address-book",
 		"href": "",
-		"spread": false,
+		"spread": true,
 		"children": [
 			{
 				"title": "Github",
@@ -31,7 +81,7 @@
 			}
 		]
 	}, {
-		"title": "33333",
+		"title": "这是一级导航",
 		"icon": "fa-stop-circle",
 		"href": "https://www.baidu.com",
 		"spread": false
