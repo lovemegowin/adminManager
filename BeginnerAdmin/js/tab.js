@@ -76,7 +76,8 @@ layui.config({
 		var that = this;
 		var tabIndex = that.exists(data.title);
 		if(tabIndex === -1) {
-			var content = '<iframe src="' + data.href + '"></iframe>';
+			globalTabIdIndex++;
+			var content = '<iframe src="' + data.href + '" data-id="' + globalTabIdIndex + '"></iframe>';
 			var title = '';
 			if(data.icon.indexOf('fa-') !== -1) {
 				title += '<i class="fa ' + data.icon + '" aria-hidden="true"></i>';
@@ -85,7 +86,6 @@ layui.config({
 			}
 			title += '<cite>' + data.title + '</cite>';
 			if(that.config.closed) {
-				globalTabIdIndex++;
 				title += '<i class="layui-icon layui-unselect layui-tab-close" data-id="' + globalTabIdIndex + '">&#x1006;</i>';
 			}
 			//添加tab
@@ -94,7 +94,8 @@ layui.config({
 				content: content
 			});
 			//iframe 自适应
-			ELEM.contentBox.find('iframe').each(function() {
+			ELEM.contentBox.find('iframe[data-id=' + globalTabIdIndex + ']').each(function() {
+				console.log('xx');
 				$(this).height(ELEM.contentBox.height());
 			});
 			if(that.config.closed) {
