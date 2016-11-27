@@ -1,3 +1,4 @@
+/** navbar.js By Beginner Emain:zheng_jinfan@126.com HomePage:http://www.zhengjinfan.cn */
 layui.config({
 	base: 'js/'
 }).define(['element', 'common'], function(exports) {
@@ -143,9 +144,9 @@ layui.config({
 				ulHtml += '<a href="javascript:;">';
 				if(data[i].icon !== undefined && data[i].icon !== '') {
 					if(data[i].icon.indexOf('fa-') !== -1) {
-						ulHtml += '<i class="fa ' + data[i].icon + '" aria-hidden="true"></i>';
+						ulHtml += '<i class="fa ' + data[i].icon + '" aria-hidden="true" data-icon="' + data[i].icon + '"></i>';
 					} else {
-						ulHtml += '<i class="layui-icon">' + data[i].icon + '</i>';
+						ulHtml += '<i class="layui-icon" data-icon="' + data[i].icon + '">' + data[i].icon + '</i>';
 					}
 				}
 				ulHtml += '<cite>' + data[i].title + '</cite>'
@@ -171,9 +172,9 @@ layui.config({
 				ulHtml += '<a href="javascript:;" ' + dataUrl + '>';
 				if(data[i].icon !== undefined && data[i].icon !== '') {
 					if(data[i].icon.indexOf('fa-') !== -1) {
-						ulHtml += '<i class="fa ' + data[i].icon + '" aria-hidden="true"></i>';
+						ulHtml += '<i class="fa ' + data[i].icon + '" aria-hidden="true" data-icon="' + data[i].icon + '"></i>';
 					} else {
-						ulHtml += '<i class="layui-icon">' + data[i].icon + '</i>';
+						ulHtml += '<i class="layui-icon" data-icon="' + data[i].icon + '">' + data[i].icon + '</i>';
 					}
 				}
 				ulHtml += '<cite>' + data[i].title + '</cite>'
