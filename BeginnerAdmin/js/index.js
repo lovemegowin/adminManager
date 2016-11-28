@@ -9,7 +9,6 @@ layui.config({
 		tab = layui.tab({
 			elem: '.admin-nav-card' //设置选项卡容器
 		});
-
 	//iframe自适应
 	$(window).on('resize', function() {
 		var $content = $('.admin-nav-card .layui-tab-content');
@@ -33,13 +32,14 @@ layui.config({
 	$('.admin-side-toggle').on('click', function() {
 		var sideWidth = $('#admin-side').width();
 		if(sideWidth === 200) {
-			$('#admin-body').animate({left: '0'});
+			$('#admin-body').animate({left: '0'});//admin-footer
+			$('#admin-footer').animate({left: '0'});
 			$('#admin-side').animate({width:'0'});
 		} else {
 			$('#admin-body').animate({left: '200px'});
+			$('#admin-footer').animate({left: '200px'});
 			$('#admin-side').animate({width:'200px'});
 		}
-
 	});
 
 	//手机设备的简单适配
