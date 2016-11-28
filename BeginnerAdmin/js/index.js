@@ -29,15 +29,15 @@ layui.config({
 	navbar.on('click(side)', function(data) {
 		tab.tabAdd(data.field);
 	});
-
+	
 	$('.admin-side-toggle').on('click', function() {
 		var sideWidth = $('#admin-side').width();
 		if(sideWidth === 200) {
-			$('#admin-side').width(0);
-			$('#admin-body').css('left', '0');
+			$('#admin-body').animate({left: '0'});
+			$('#admin-side').animate({width:'0'});
 		} else {
-			$('#admin-side').width(200);
-			$('#admin-body').css('left', '200px');
+			$('#admin-body').animate({left: '200px'});
+			$('#admin-side').animate({width:'200px'});
 		}
 
 	});

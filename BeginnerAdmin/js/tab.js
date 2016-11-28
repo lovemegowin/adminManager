@@ -96,7 +96,6 @@ layui.config({
 			});
 			//iframe 自适应
 			ELEM.contentBox.find('iframe[data-id=' + globalTabIdIndex + ']').each(function() {
-				console.log('xx');
 				$(this).height(ELEM.contentBox.height());
 			});
 			if(that.config.closed) {
@@ -112,7 +111,7 @@ layui.config({
 		}
 	};
 	Tab.prototype.on = function(events, callback) {
-		
+
 	}
 
 	var tab = new Tab();

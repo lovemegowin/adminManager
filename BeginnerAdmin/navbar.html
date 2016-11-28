@@ -99,6 +99,45 @@
 				</div>
 			</fieldset>
 			<fieldset class="layui-elem-field">
+				<legend>Event 事件</legend>
+				<div class="layui-field-box">
+					<p>语法：navbar.on('event(过滤器值)', callback);</p>
+					<table class="layui-table">
+						<thead>
+							<tr>
+								<th>事件</th>
+								<th>描述</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>click</td>
+								<td>Navbar点击事件,元素被点击后会触发</td>
+							</tr>
+						</tbody>
+					</table>
+					<p>举个栗子：</p>
+					<p>
+						<pre class="layui-code">
+						navbar.on('click(side)', function(data) {
+						    //Do something...
+						    //data参数说明
+						    //包含两个属性：data.elem 和 data.field
+						    //data.elem 是点击的a标签dom对象
+						    //data.field 包含三个属性
+						    //1、data.field.href  设置的连接地址
+						    //2、data.field.icon  设置的图标
+						    //3、data.field.title 设置的标题
+					     console.log(data.elem);
+					     console.log(data.field.title);
+					     console.log(data.field.icon);
+					     console.log(data.field.href);
+						});
+						</pre>
+					</p>
+				</div>
+			</fieldset>
+			<fieldset class="layui-elem-field">
 				<legend>数据结构</legend>
 				<div class="layui-field-box">
 					<p>请严格按照以下数据结构设置数据</p>
@@ -167,6 +206,10 @@
 				});
 				navbar.render();
 				navbar.on('click(demo)', function(data) {
+					console.log(data.elem);
+					console.log(data.field.title);
+					console.log(data.field.icon);
+					console.log(data.field.href);
 					layer.msg(data.field.href);
 				});
 			});
