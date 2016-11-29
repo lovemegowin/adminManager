@@ -17,10 +17,12 @@ layui.config({
 			$(this).height($content.height());
 		});
 	}).resize();
+
 	//设置navbar
 	navbar.set({
 		elem: '#admin-navbar-side',
-		url: 'datas/nav.json'
+		data: navs
+			//url: 'datas/nav.json'
 	});
 	//渲染navbar
 	navbar.render();
@@ -28,17 +30,29 @@ layui.config({
 	navbar.on('click(side)', function(data) {
 		tab.tabAdd(data.field);
 	});
-	
+
 	$('.admin-side-toggle').on('click', function() {
 		var sideWidth = $('#admin-side').width();
 		if(sideWidth === 200) {
-			$('#admin-body').animate({left: '0'});//admin-footer
-			$('#admin-footer').animate({left: '0'});
-			$('#admin-side').animate({width:'0'});
+			$('#admin-body').animate({
+				left: '0'
+			}); //admin-footer
+			$('#admin-footer').animate({
+				left: '0'
+			});
+			$('#admin-side').animate({
+				width: '0'
+			});
 		} else {
-			$('#admin-body').animate({left: '200px'});
-			$('#admin-footer').animate({left: '200px'});
-			$('#admin-side').animate({width:'200px'});
+			$('#admin-body').animate({
+				left: '200px'
+			});
+			$('#admin-footer').animate({
+				left: '200px'
+			});
+			$('#admin-side').animate({
+				width: '200px'
+			});
 		}
 	});
 

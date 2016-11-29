@@ -167,7 +167,17 @@ layui.define(function(exports) {
 		},
 		//验证日期 [只能验证日期，不能验证时间]  
 		IsDateTime: function(input) {
-			if(Date.parse(input)) {
+			var regex = /((19|20)[0-9]{2})-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])/;
+			if(regex.test(input)) {
+				var ymd = input.match(/(\d{4})-(\d+)-(\d+).*/);
+				var year = parseInt(ymd[1]);
+				var month = parseInt(ymd[2]);
+				var day = parseInt(ymd[3]);
+				if(day > 28) {
+					//获取当月的最后一天
+					var lastDay = new Date(year, month, 0).getDate();
+					return(lastDay >= day);
+				}
 				return true;
 			} else {
 				return false;

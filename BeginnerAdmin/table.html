@@ -14,10 +14,10 @@
 		<div class="admin-main">
 
 			<blockquote class="layui-elem-quote">
-				<a href="#" class="layui-btn layui-btn-small">
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="add">
 					<i class="layui-icon">&#xe608;</i> 添加信息
 				</a>
-				<a href="#" class="layui-btn layui-btn-small">
+				<a href="#" class="layui-btn layui-btn-small" id="import">
 					<i class="layui-icon">&#xe608;</i> 导入信息
 				</a>
 				<a href="#" class="layui-btn layui-btn-small">
@@ -422,9 +422,10 @@
 				base: 'plugins/layui/modules/'
 			});
 
-			layui.use(['icheck', 'laypage'], function() {
+			layui.use(['icheck', 'laypage','layer'], function() {
 				var $ = layui.jquery,
-					laypage = layui.laypage;
+					laypage = layui.laypage,
+					layer = parent.layer === undefined ? layui.layer : parent.layer;
 				$('input').iCheck({
 					checkboxClass: 'icheckbox_flat-green'
 				});
@@ -448,8 +449,40 @@
 				$('#search').on('click', function() {
 					parent.layer.alert('你点击了搜索按钮')
 				});
-				
-				
+
+				$('#add').on('click', function() {
+					$.get('temp/edit-form.html', null, function(form) {
+						layer.open({
+							type: 1,
+							title: '添加表单',
+							content: form,
+							btn: ['保存', '取消'],
+							area: ['600px', '400px'],
+							maxmin: true,
+							yes: function(index) {
+								console.log(index);
+							},
+							full: function(elem) {
+								var win = window.top === window.self ? window : parent.window;
+								$(win).on('resize', function() {
+									var $this = $(this);
+									elem.width($this.width()).height($this.height()).css({
+										top: 0,
+										left: 0
+									});
+									elem.children('div.layui-layer-content').height($this.height() - 95);
+								});
+							}
+						});
+					});
+				});
+
+				$('#import').on('click', function() {
+					var that = this;
+					var index = layer.tips('只想提示地精准些', that,{tips: [1, 'white']});
+					$('#layui-layer'+index).children('div.layui-layer-content').css('color','#000000');
+				});
+
 				$('.site-table tbody tr').on('click', function(event) {
 					var $this = $(this);
 					var $input = $this.children('td').eq(0).find('input');
@@ -460,7 +493,7 @@
 						$this.removeAttr('style');
 					});
 					$input.iCheck('toggle');
-				}).find('input').each(function(){
+				}).find('input').each(function() {
 					var $this = $(this);
 					$this.on('ifChecked', function(e) {
 						$this.parents('tr').css('background-color', '#EEEEEE');
