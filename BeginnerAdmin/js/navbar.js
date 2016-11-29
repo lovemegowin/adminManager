@@ -103,7 +103,6 @@ layui.config({
 									}
 								}
 								callback(data);
-								$(this).parent('dl').parent('li').addClass('layui-this').siblings().removeClass('layui-this');
 							});
 						});
 					} else {
@@ -121,7 +120,6 @@ layui.config({
 								}
 							}
 							callback(data);
-							$this.addClass('layui-this').siblings().removeClass('layui-this');
 						});
 					}
 				});
