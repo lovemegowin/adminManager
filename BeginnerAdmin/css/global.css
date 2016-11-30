@@ -39,7 +39,7 @@
 .header-demo .layui-nav .layui-this a{color: #000;}
 .header-demo .layui-nav .layui-this:after, 
 .header-demo .layui-nav-bar{background-color: #393D49;}
-.header-demo .layui-nav .layui-this a{padding: 0 30px;}
+.header-demo .layui-nav .layui-this a{padding: 0 20px;}
 
 /* 底部 */
 .footer{padding: 30px 0; line-height: 30px; text-align: center; background-color: #eee; color: #666; font-weight: 300;}
@@ -289,8 +289,9 @@ body .site-demo-nav .layui-nav-item{line-height: 40px}
 	border-bottom: 0;
 }
 .admin-header-user img{
-	width: 40px; height: 40px; border-radius: 100%;    position: relative;
-    top: 15px;
+	width: 40px; height: 40px; border-radius: 100%;    
+	/*position: relative;
+    top: 15px;*/
 }
 .admin-header-user .layui-nav-more{
 	top:33px;
