@@ -288,7 +288,10 @@ body .site-demo-nav .layui-nav-item{line-height: 40px}
 .admin-nav-card>.layui-tab-title .layui-this:after{
 	border-bottom: 0;
 }
-
+.admin-header-user img{
+	width: 40px; height: 40px; border-radius: 100%;    position: relative;
+    top: 15px;
+}
 .admin-header-user .layui-nav-more{
 	top:33px;
 }
