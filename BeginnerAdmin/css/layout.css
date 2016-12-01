@@ -1,0 +1,72 @@
+.beg-layout-container{
+	position: relative;
+	min-width: 1366px;
+	overflow-y:hidden;
+	overflow-x: auto;
+}
+.beg-layout-container .beg-layout-main{
+	position: absolute;
+}
+.beg-layout-container .beg-layout-header{
+	background-color: #FFFFFF;
+}
+.beg-layout-container .beg-layout-header .beg-layout-logo{
+	width: 200px;
+	height: 70px;
+	text-align: center;
+	line-height: 70px;
+}
+.beg-layout-container .beg-layout-header .beg-layout-menu{
+	top: 0;
+	left:200px;
+}
+.beg-layout-header .beg-layout-nav{
+	background: none;
+}
+.beg-layout-header .beg-layout-nav .layui-nav-item{
+	line-height: 70px;
+}
+.beg-layout-header .beg-layout-nav .layui-nav-item .layui-nav-more{
+	top:32px
+}
+.beg-layout-header .beg-layout-nav .layui-nav-item .layui-nav-mored{
+	top:25px
+}
+.beg-layout-header .beg-layout-nav .layui-this{
+	color: #FFFFFF;
+	background-color: #4E5465;
+}
+.beg-layout-header .beg-layout-nav .layui-this:after,.beg-layout-header .layui-nav-bar{
+	background-color: #4E5465;
+}
+.beg-layout-header .beg-layout-nav .layui-nav-item a{
+	color: #393D49;
+}
+.beg-layout-header .beg-layout-nav .layui-this a{
+	color: #FFFFFF;
+}
+.beg-layout-header .beg-layout-nav .layui-nav-item a:hover{
+	color: #FFFFFF;
+	background-color: #4E5465;
+}
+.beg-layout-header .beg-layout-panel{
+	right: 0;
+}
+.beg-layout-header .beg-layou-head{
+	
+}
+.beg-layout-header .beg-layou-head img{
+	width: 40px; height: 40px; border-radius: 100%;    
+}
+
+.beg-layout-container .beg-layout-side{
+	background-color: #393D49;
+	color: #FFFFFF;
+}
+.beg-layout-container .beg-layout-body{
+	height: 400px;
+}
+.beg-layout-container .beg-layout-footer{
+	line-height: 44px;
+	text-align: center;
+}
