@@ -17,9 +17,25 @@
 	text-align: center;
 	line-height: 60px;
 }
+.beg-layout-container .beg-layout-header .beg-layout-side-toggle{
+	position: absolute;
+    cursor: pointer;
+    z-index: 19940201;
+    left: 200px;
+    color: white;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    background-color: #1AA094;
+    line-height: 30px;
+    top: 25%;
+}
+.beg-layout-container .beg-layout-header .beg-layout-side-toggle:hover{
+	background-color: #5FB878;
+}
 .beg-layout-container .beg-layout-header .beg-layout-menu{
 	top: 0;
-	left:200px;
+	left:230px;
 }
 .beg-layout-header .beg-layout-menu .beg-layout-nav{
 	background: none;
