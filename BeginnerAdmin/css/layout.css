@@ -75,6 +75,10 @@
 	top: 60px;
 	height: auto;
 }
+.beg-layout-container .beg-layout-body .layout-nav-card cite{
+	font-style: normal;
+    padding-left: 5px;	
+}
 .beg-layout-body iframe{
 	width: 100%;
 	border: 0;
