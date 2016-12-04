@@ -105,6 +105,23 @@
 	text-align: center;
 }
 
+.layout-tab-contextmenu {width: 135px; background-color: #CCCCCC;position: absolute; z-index: 19940201;display: none;}
+.layout-tab-contextmenu .layui-nav{
+	padding: 5px 3px;
+}
+.layout-tab-contextmenu .layui-nav .layui-nav-item{
+	line-height: 27px;width: 100%;
+}
+.layout-tab-contextmenu .layui-nav .layui-nav-item:hover{
+	background-color: #5FB878;
+}
+.layout-tab-contextmenu .layui-nav .layui-nav-item a{
+	text-align: left;
+}
+
+.layout-tab-contextmenu .layui-nav .layui-this:after, .layout-tab-contextmenu  .layui-nav-bar { 
+	transition: none; -webkit-transition:none; background: none; 
+	}
 
 @media screen and (max-width: 1024px) {
 	.beg-layout-menu cite{

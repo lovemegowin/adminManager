@@ -86,7 +86,7 @@ layui.config({
 		if($a.data('tab') !== undefined && $a.data('tab')) {
 			tab.tabAdd({
 				title: $a.children('cite').text(),
-				icon: 'fa-user',
+				//icon: 'fa-user',
 				href: $a.data('url')
 			});
 		}

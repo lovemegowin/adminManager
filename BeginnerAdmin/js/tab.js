@@ -80,10 +80,12 @@ layui.config({
 			globalTabIdIndex++;
 			var content = '<iframe src="' + data.href + '" data-id="' + globalTabIdIndex + '"></iframe>';
 			var title = '';
-			if(data.icon.indexOf('fa-') !== -1) {
-				title += '<i class="fa ' + data.icon + '" aria-hidden="true"></i>';
-			} else {
-				title += '<i class="layui-icon">' + data.icon + '</i>';
+			if(data.icon !== undefined) {
+				if(data.icon.indexOf('fa-') !== -1) {
+					title += '<i class="fa ' + data.icon + '" aria-hidden="true"></i>';
+				} else {
+					title += '<i class="layui-icon">' + data.icon + '</i>';
+				}
 			}
 			title += '<cite>' + data.title + '</cite>';
 			if(that.config.closed) {
