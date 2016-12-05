@@ -1,7 +1,5 @@
 /** navbar.js By Beginner Emain:zheng_jinfan@126.com HomePage:http://www.zhengjinfan.cn */
-layui.config({
-	base: 'js/'
-}).define(['element', 'common'], function(exports) {
+layui.define(['element', 'common'], function(exports) {
 	"use strict";
 	var $ = layui.jquery,
 		layer = parent.layer === undefined ? layui.layer : parent.layer,
