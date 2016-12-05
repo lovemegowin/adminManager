@@ -170,7 +170,7 @@ layui.define(['element', 'common'], function(exports) {
 	 * 清除缓存
 	 */
 	Navbar.prototype.cleanCached = function(){
-		layui.data(cacheName);
+		layui.data(cacheName,null);
 	};
 	/**
 	 * 获取html字符串
