@@ -4,7 +4,8 @@ layui.define(['element', 'common'], function(exports) {
 	var $ = layui.jquery,
 		layer = parent.layer === undefined ? layui.layer : parent.layer,
 		element = layui.element(),
-		common = layui.common;
+		common = layui.common,
+		cacheName = 'tb_navbar';
 
 	var Navbar = function() {
 		/**
@@ -14,7 +15,8 @@ layui.define(['element', 'common'], function(exports) {
 			elem: undefined, //容器
 			data: undefined, //数据源
 			url: undefined, //数据源地址
-			type: 'GET' //读取方式
+			type: 'GET', //读取方式
+			cached: false //是否使用缓存
 		};
 		this.v = '0.0.1';
 	};
@@ -43,23 +45,58 @@ layui.define(['element', 'common'], function(exports) {
 			element.init();
 			_that.config.elem = $container;
 		} else {
-			$.ajax({
-				type: _config.type,
-				url: _config.url,
-				async: false, //_config.async,
-				dataType: 'json',
-				success: function(result, status, xhr) {
-					var html = getHtml(result);
+			if(_config.cached) {
+				var cacheNavbar = layui.data(cacheName);
+				if(cacheNavbar.navbar === undefined) {
+					$.ajax({
+						type: _config.type,
+						url: _config.url,
+						async: false, //_config.async,
+						dataType: 'json',
+						success: function(result, status, xhr) {
+							//添加缓存
+							layui.data(cacheName, {
+								key: 'navbar',
+								value: result
+							});
+							var html = getHtml(result);
+							$container.html(html);
+							element.init();
+						},
+						error: function(xhr, status, error) {
+							common.msgError('Navbar error:' + error);
+						},
+						complete: function(xhr, status) {
+							_that.config.elem = $container;
+						}
+					});
+				} else {
+					var html = getHtml(cacheNavbar.navbar);
 					$container.html(html);
 					element.init();
-				},
-				error: function(xhr, status, error) {
-					common.msgError('Navbar error:' + error);
-				},
-				complete: function(xhr, status) {
 					_that.config.elem = $container;
 				}
-			});
+			} else {
+				//清空缓存
+				layui.data(cacheName, null);
+				$.ajax({
+					type: _config.type,
+					url: _config.url,
+					async: false, //_config.async,
+					dataType: 'json',
+					success: function(result, status, xhr) {
+						var html = getHtml(result);
+						$container.html(html);
+						element.init();
+					},
+					error: function(xhr, status, error) {
+						common.msgError('Navbar error:' + error);
+					},
+					complete: function(xhr, status) {
+						_that.config.elem = $container;
+					}
+				});
+			}
 		}
 		return _that;
 	};
@@ -72,6 +109,11 @@ layui.define(['element', 'common'], function(exports) {
 		$.extend(true, that.config, options);
 		return that;
 	};
+	/**
+	 * 绑定事件
+	 * @param {String} events
+	 * @param {Function} callback
+	 */
 	Navbar.prototype.on = function(events, callback) {
 		var that = this;
 		var _con = that.config.elem;
@@ -123,6 +165,12 @@ layui.define(['element', 'common'], function(exports) {
 				});
 			}
 		}
+	};
+	/**
+	 * 清除缓存
+	 */
+	Navbar.prototype.cleanCached = function(){
+		layui.data(cacheName);
 	};
 	/**
 	 * 获取html字符串

@@ -22,7 +22,8 @@ layui.config({
 	navbar.set({
 		elem: '#admin-navbar-side',
 		data: navs
-			//url: 'datas/nav.json'
+		/*cached:true,
+		url: 'datas/nav.json'*/
 	});
 	//渲染navbar
 	navbar.render();
