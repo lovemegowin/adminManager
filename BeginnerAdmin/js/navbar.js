@@ -106,6 +106,7 @@ layui.define(['element', 'common'], function(exports) {
 	 */
 	Navbar.prototype.set = function(options) {
 		var that = this;
+		that.config.data = undefined;
 		$.extend(true, that.config, options);
 		return that;
 	};
