@@ -23,8 +23,12 @@ layui.define(['jquery'], function(exports) {
 		$.extend(true, that.config, options);
 		return that;
 	};
-	Area.prototype.init = function() {
+	Area.prototype.init = function(options) {
+		var that = this;
 		
+		
+		
+		return that;		
 	};
 
 	var area = new Area();
