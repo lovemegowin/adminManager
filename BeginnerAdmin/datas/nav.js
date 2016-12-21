@@ -53,7 +53,7 @@ var navs = [{
 	"title": "地址本",
 	"icon": "fa-address-book",
 	"href": "",
-	"spread": true,
+	"spread": false,
 	"children": [{
 		"title": "Github",
 		"icon": "fa-github",

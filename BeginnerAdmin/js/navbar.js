@@ -16,7 +16,8 @@ layui.define(['element', 'common'], function(exports) {
 			data: undefined, //数据源
 			url: undefined, //数据源地址
 			type: 'GET', //读取方式
-			cached: false //是否使用缓存
+			cached: false, //是否使用缓存
+			spreadOne:false //设置是否只展开一个二级菜单
 		};
 		this.v = '0.0.1';
 	};
@@ -97,6 +98,16 @@ layui.define(['element', 'common'], function(exports) {
 					}
 				});
 			}
+		}
+		
+		//只展开一个二级菜单
+		if(_config.spreadOne){
+			var $ul = $container.children('ul');
+			$ul.find('li.layui-nav-item').each(function(){
+				$(this).on('click',function(){
+					$(this).siblings().removeClass('layui-nav-itemed');
+				});
+			});
 		}
 		return _that;
 	};

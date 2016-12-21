@@ -20,7 +20,9 @@ layui.config({
 
 	//设置navbar
 	navbar.set({
+		spreadOne:true,
 		elem: '#admin-navbar-side',
+		cached:true,
 		data: navs
 		/*cached:true,
 		url: 'datas/nav.json'*/
