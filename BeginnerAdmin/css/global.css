@@ -345,6 +345,9 @@ body .site-demo-nav .layui-nav-item{line-height: 40px}
 	width: 185px; height: 70px; position: relative;
 }
 
+.beg-navbar .layui-nav-child dd a{
+	padding-left: 30px;
+}
 
 
 /* 适配多设备 */

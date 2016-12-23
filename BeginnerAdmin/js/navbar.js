@@ -189,7 +189,7 @@ layui.define(['element', 'common'], function(exports) {
 	 * @param {Object} data
 	 */
 	function getHtml(data) {
-		var ulHtml = '<ul class="layui-nav layui-nav-tree">';
+		var ulHtml = '<ul class="layui-nav layui-nav-tree beg-navbar">';
 		for(var i = 0; i < data.length; i++) {
 			if(data[i].spread) {
 				ulHtml += '<li class="layui-nav-item layui-nav-itemed">';

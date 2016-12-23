@@ -10,7 +10,8 @@ layui.define(['element', 'common'], function(exports) {
 		Tab = function() {
 			this.config = {
 				elem: undefined,
-				closed: true //是否包含删除按钮
+				closed: true, //是否包含删除按钮				
+				autoRefresh: false
 			};
 		};
 	var ELEM = {};
@@ -73,6 +74,7 @@ layui.define(['element', 'common'], function(exports) {
 	 */
 	Tab.prototype.tabAdd = function(data) {
 		var that = this;
+		var _config = that.config;
 		var tabIndex = that.exists(data.title);
 		if(tabIndex === -1) {
 			globalTabIdIndex++;
@@ -86,7 +88,7 @@ layui.define(['element', 'common'], function(exports) {
 				}
 			}
 			title += '<cite>' + data.title + '</cite>';
-			if(that.config.closed) {
+			if(_config.closed) {
 				title += '<i class="layui-icon layui-unselect layui-tab-close" data-id="' + globalTabIdIndex + '">&#x1006;</i>';
 			}
 			//添加tab
@@ -98,7 +100,7 @@ layui.define(['element', 'common'], function(exports) {
 			ELEM.contentBox.find('iframe[data-id=' + globalTabIdIndex + ']').each(function() {
 				$(this).height(ELEM.contentBox.height());
 			});
-			if(that.config.closed) {
+			if(_config.closed) {
 				//监听关闭事件
 				ELEM.titleBox.find('li').children('i.layui-tab-close[data-id=' + globalTabIdIndex + ']').on('click', function() {
 					element.tabDelete(ELEM.tabFilter, $(this).parent('li').index()).init();
@@ -108,6 +110,10 @@ layui.define(['element', 'common'], function(exports) {
 			element.tabChange(ELEM.tabFilter, ELEM.titleBox.find('li').length - 1);
 		} else {
 			element.tabChange(ELEM.tabFilter, tabIndex);
+			//自动刷新
+			if(_config.autoRefresh) {
+				_config.elem.find('div.layui-tab-content > div').eq(tabIndex).children('iframe')[0].contentWindow.location.reload();
+			}
 		}
 	};
 	Tab.prototype.on = function(events, callback) {
