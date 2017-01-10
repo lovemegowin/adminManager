@@ -39,6 +39,10 @@ var navs = [{
 		"title": "Navbar组件",
 		"icon": "fa-navicon",
 		"href": "navbar.html"
+	}, {
+		"title": "Laytpl+Laypage",
+		"icon": "&#xe628;",
+		"href": "paging.html"
 	}]
 }, {
 	"title": "第三方组件",
