@@ -6,8 +6,8 @@ layui.define(['layer', 'laypage', 'laytpl'], function(exports) {
 
 	var Paging = function() {
 		this.config = {
-			url: undefined,  //数据远程地址
-			type: 'get',     //数据的获取方式  get or post
+			url: undefined, //数据远程地址
+			type: 'POST', //数据的获取方式  get or post
 			elem: undefined, //内容容器
 			params: null,
 			tempElem: undefined, //模板容器
@@ -19,7 +19,7 @@ layui.define(['layer', 'laypage', 'laytpl'], function(exports) {
 			success: undefined, //type:function
 			fail: undefined, //type:function
 			complate: undefined, //type:function
-			serverError:function(xhr,status,error){  //ajax的服务错误
+			serverError: function(xhr, status, error) { //ajax的服务错误
 				throwError("错误提示： " + xhr.status + " " + xhr.statusText);
 			}
 		};
@@ -66,7 +66,8 @@ layui.define(['layer', 'laypage', 'laytpl'], function(exports) {
 			throwError('Paging Error:type参数配置出错，只支持GET或都POST');
 		}
 		that.get({
-			pageIndex: 1
+			pageIndex: 1,
+			pageSize: _config.pageConfig.pageSize
 		});
 
 		return that;
@@ -78,10 +79,17 @@ layui.define(['layer', 'laypage', 'laytpl'], function(exports) {
 	Paging.prototype.get = function(options) {
 		var that = this;
 		var _config = that.config;
+		//默认参数
+		var df = {
+			pageIndex:1,
+			pageSize:_config.pageConfig.pageSize
+		};
+		
+		$.extend(true, df,options, _config.params);
 		$.ajax({
 			type: _config.type,
 			url: _config.url,
-			data: options.params,
+			data: df,
 			dataType: 'json',
 			success: function(result, status, xhr) {
 				if(result.code === 0) {
@@ -103,14 +111,15 @@ layui.define(['layer', 'laypage', 'laytpl'], function(exports) {
 
 						var defaults = {
 							cont: $(_pageConfig.elem),
-							curr: options.pageIndex,
+							curr: df.pageIndex,
 							pages: pages,
 							jump: function(obj, first) {
 								//得到了当前页，用于向服务端请求对应数据
 								var curr = obj.curr;
 								if(!first) {
 									that.get({
-										pageIndex: curr
+										pageIndex: curr,
+										pageSize: pageSize
 									});
 								}
 							}
@@ -120,12 +129,12 @@ layui.define(['layer', 'laypage', 'laytpl'], function(exports) {
 					}
 					_config.success(); //渲染成功
 				} else {
-					_config.fail(result.msg);//获取数据失败
+					_config.fail(result.msg); //获取数据失败
 				}
-				_config.complate();//渲染完成
+				_config.complate(); //渲染完成
 			},
-			error:function(xhr,status,error){
-				_config.serverError(xhr,status,error);//服务器错误
+			error: function(xhr, status, error) {
+				_config.serverError(xhr, status, error); //服务器错误
 			}
 		});
 	};

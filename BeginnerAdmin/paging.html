@@ -34,6 +34,7 @@
 									<th>操作</th>
 								</tr>
 							</thead>
+							<!--内容容器-->
 							<tbody id="con">
 								<tr>
 									<td><input type="checkbox"></td>
@@ -48,6 +49,7 @@
 								</tr>
 							</tbody>
 						</table>
+						<!--分页容器-->
 						<div id="paged"></div>
 					</div>
 					<pre class="layui-code">
@@ -81,6 +83,7 @@
         },
     });
 });
+//ps:服务端是永远可以获取到pageIndex  和 pageSize 这两个参数的
 						</pre>
 				</div>
 			</fieldset>
@@ -108,7 +111,7 @@
 							<tr>
 								<td style="text-align: center;">type</td>
 								<td style="text-align: center;">string</td>
-								<td style="text-align: center;">GET</td>
+								<td style="text-align: center;">POST</td>
 								<td>
 									<p>请求的方式，可选参数：GET、POST</p>
 								</td>

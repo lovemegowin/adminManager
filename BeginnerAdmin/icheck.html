@@ -18,21 +18,17 @@
 			<fieldset class="layui-elem-field">
 				<legend>演示</legend>
 				<div class="layui-field-box">
-
 				</div>
 			</fieldset>
 		</div>
 		<script type="text/javascript" src="plugins/layui/layui.js"></script>
 		<script>
 			layui.use(['jquery'], function() {
-				var $ = layui.jquery;
+				var $ = layui.jquery,
+				layer = top.layui.layer;
 				
-				$('ul#test li').each(function(){
-					var $this = $(this);
-					$this.on('click',function(){
-						layer.msg($this.text());
-					});
-				});
+				
+				layer.alert('dom');
 			});
 		</script>
 	</body>
