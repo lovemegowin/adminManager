@@ -300,11 +300,13 @@
 					paging = layui.paging();
 
 				paging.init({
-					url: 'datas/laytpl_laypage_data.json', //地址
+					url: 'http://api.zhengjinfan.cn/api/CapitalRecord/', //地址
 					elem: '#con', //内容容器
+					type:'post',
 					params: { //发送到服务端的参数
 						t: Math.random(),
-						action: 'GetXxx'
+						token:'F8F5AE2137BFAEF77FF7408476AF6C64',
+						pageIndex: 1
 					},
 					tempElem: '#conTemp', //模块容器
 					pageConfig: { //分页参数配置
@@ -317,8 +319,9 @@
 					fail: function(msg) { //获取数据失败的回调
 						//alert('获取数据失败')
 					},
-					complate: function() { //完成的回调
+					complate: function(res) { //完成的回调
 						//alert('处理完成');
+						console.log(res);
 					},
 				});
 				//搜索

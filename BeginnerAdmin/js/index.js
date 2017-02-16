@@ -8,6 +8,10 @@ layui.config({
 		navbar = layui.navbar(),
 		tab = layui.tab({
 			elem: '.admin-nav-card' //设置选项卡容器
+			,maxSetting:{
+				max:3,
+				tipMsg:'只能开3个哇，不能再开了。真的。'
+			}
 		});
 	//iframe自适应
 	$(window).on('resize', function() {

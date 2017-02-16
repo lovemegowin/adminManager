@@ -10,11 +10,13 @@ layui.define(['element', 'common'], function(exports) {
 		Tab = function() {
 			this.config = {
 				elem: undefined,
-				closed: true, //是否包含删除按钮				
+				closed: true, //是否包含删除按钮
 				autoRefresh: false
 			};
 		};
 	var ELEM = {};
+	//版本号
+	Tab.prototype.v = '0.1.2';
 	/**
 	 * 参数设置
 	 * @param {Object} options
@@ -77,6 +79,24 @@ layui.define(['element', 'common'], function(exports) {
 		var _config = that.config;
 		var tabIndex = that.exists(data.title);
 		if(tabIndex === -1) {
+			//设置只能同时打开多少个tab选项卡
+			if(_config.maxSetting !== 'undefined') {
+				var currentTabCount = _config.elem.children('ul.layui-tab-title').children('li').length;
+				if(typeof _config.maxSetting === 'number') {
+					if(currentTabCount === _config.maxSetting) {
+						layer.msg('为了系统的流畅度，只能同时打开' + _config.maxSetting + '个选项卡。');
+						return;
+					}
+				}
+				if(typeof _config.maxSetting === 'object') {
+					var max = _config.maxSetting.max || 8;
+					var msg = _config.maxSetting.tipMsg || '为了系统的流畅度，只能同时打开' + max + '个选项卡。';
+					if(currentTabCount === max) {
+						layer.msg(msg);
+						return;
+					}
+				}
+			}
 			globalTabIdIndex++;
 			var content = '<iframe src="' + data.href + '" data-id="' + globalTabIdIndex + '"></iframe>';
 			var title = '';

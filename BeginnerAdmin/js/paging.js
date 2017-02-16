@@ -131,7 +131,7 @@ layui.define(['layer', 'laypage', 'laytpl'], function(exports) {
 				} else {
 					_config.fail(result.msg); //获取数据失败
 				}
-				_config.complate(); //渲染完成
+				_config.complate(result); //渲染完成
 			},
 			error: function(xhr, status, error) {
 				_config.serverError(xhr, status, error); //服务器错误
