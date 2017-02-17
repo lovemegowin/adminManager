@@ -8,9 +8,10 @@ layui.config({
 		navbar = layui.navbar(),
 		tab = layui.tab({
 			elem: '.admin-nav-card' //设置选项卡容器
-			,maxSetting:{
-				max:3,
-				tipMsg:'只能开3个哇，不能再开了。真的。'
+				,
+			maxSetting: {
+				max: 5,
+				tipMsg: '只能开3个哇，不能再开了。真的。'
 			}
 		});
 	//iframe自适应
@@ -28,8 +29,8 @@ layui.config({
 		elem: '#admin-navbar-side',
 		cached: true,
 		data: navs
-			/*cached:true,
-			url: 'datas/nav.json'*/
+		/*cached:true,
+		url: 'datas/nav.json'*/
 	});
 	//渲染navbar
 	navbar.render();
@@ -62,6 +63,28 @@ layui.config({
 			});
 		}
 	});
+	$('.admin-side-full').on('click', function() {
+		var docElm = document.documentElement;
+		//W3C  
+		if(docElm.requestFullscreen) {
+			docElm.requestFullscreen();
+		}
+		//FireFox  
+		else if(docElm.mozRequestFullScreen) {
+			docElm.mozRequestFullScreen();
+		}
+		//Chrome等  
+		else if(docElm.webkitRequestFullScreen) {
+			docElm.webkitRequestFullScreen();
+		}
+		//IE11
+		else if(elem.msRequestFullscreen) {
+			elem.msRequestFullscreen();
+		}
+		layer.msg('按Esc即可退出全屏');
+	});
+	
+	
 
 	//锁屏
 	$(document).on('keydown', function() {

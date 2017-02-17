@@ -85,11 +85,11 @@ layui.define(['layer', 'laypage', 'laytpl'], function(exports) {
 			pageSize:_config.pageConfig.pageSize
 		};
 		
-		$.extend(true, df,options, _config.params);
+		$.extend(true, _config.params,df, options );
 		$.ajax({
 			type: _config.type,
 			url: _config.url,
-			data: df,
+			data: _config.params,
 			dataType: 'json',
 			success: function(result, status, xhr) {
 				if(result.code === 0) {
