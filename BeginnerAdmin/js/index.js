@@ -1,18 +1,22 @@
 /** index.js By Beginner Emain:zheng_jinfan@126.com HomePage:http://www.zhengjinfan.cn */
+
+var tab;
+
 layui.config({
 	base: 'js/'
 }).use(['element', 'layer', 'navbar', 'tab'], function() {
 	var element = layui.element(),
 		$ = layui.jquery,
 		layer = layui.layer,
-		navbar = layui.navbar(),
+		navbar = layui.navbar();
 		tab = layui.tab({
 			elem: '.admin-nav-card' //设置选项卡容器
 				,
 			maxSetting: {
 				max: 5,
 				tipMsg: '只能开3个哇，不能再开了。真的。'
-			}
+			},
+			contextMenu:true
 		});
 	//iframe自适应
 	$(window).on('resize', function() {
@@ -109,7 +113,10 @@ layui.config({
 	});
 });
 
+var isShowLock = false;
 function lock($, layer) {
+	if(isShowLock)
+		return;
 	//自定页
 	layer.open({
 		title: false,
@@ -119,7 +126,7 @@ function lock($, layer) {
 		content: $('#lock-temp').html(),
 		shade: [0.9, '#393D49'],
 		success: function(layero, lockIndex) {
-
+			isShowLock = true;
 			//给显示用户名赋值
 			layero.find('div#lockUserName').text('admin');
 			layero.find('input[name=lockPwd]').on('focus', function() {
@@ -162,7 +169,7 @@ function lock($, layer) {
 			 */
 			var unlock = function(un, pwd) {
 				//这里可以使用ajax方法解锁
-				/*$.post('api/xx',{username:un,password:pwd}},function(data){
+				/*$.post('api/xx',{username:un,password:pwd},function(data){
 				 	//验证成功
 					if(data.success){
 						//关闭锁屏层
@@ -172,7 +179,7 @@ function lock($, layer) {
 					}					
 				},'json');
 				*/
-
+				isShowLock = false;
 				//演示：默认输入密码都算成功
 				//关闭锁屏层
 				layer.close(lockIndex);
