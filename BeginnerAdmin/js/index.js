@@ -14,7 +14,7 @@ layui.config({
 				,
 			maxSetting: {
 				max: 5,
-				tipMsg: '只能开3个哇，不能再开了。真的。'
+				tipMsg: '只能开5个哇，不能再开了。真的。'
 			},
 			contextMenu:true
 		});

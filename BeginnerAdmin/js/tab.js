@@ -217,6 +217,10 @@ layui.define(['element', 'common'], function(exports) {
 							$context.remove();
 						});
 					});
+					
+					$(document).on('click',function(){
+						$context.remove();
+					});
 				}
 				return false;
 			});
