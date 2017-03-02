@@ -261,10 +261,13 @@ body .site-demo-nav .layui-nav-item{line-height: 40px}
 	padding-left: 30px;
 }
 
-.admin-nav-card{
+.admin{
 	border: 0;
 	margin: 0;
 	box-shadow:none;
+}
+.admin-nav-card{
+	margin-top: 5px;
 }
 .admin-nav-card .layui-icon{
 	position: relative;

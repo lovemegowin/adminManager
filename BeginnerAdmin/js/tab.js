@@ -5,7 +5,7 @@ layui.define(['element', 'common'], function(exports) {
 	var mod_name = 'tab',
 		$ = layui.jquery,
 		element = layui.element(),
-		commom = layui.common,
+		commo = layui.common,
 		globalTabIdIndex = 0,
 		Tab = function() {
 			this.config = {
@@ -17,7 +17,7 @@ layui.define(['element', 'common'], function(exports) {
 		};
 	var ELEM = {};
 	//版本号
-	Tab.prototype.v = '0.1.3';
+	Tab.prototype.v = '0.1.5';
 	/**
 	 * 参数设置
 	 * @param {Object} options
@@ -72,6 +72,27 @@ layui.define(['element', 'common'], function(exports) {
 		return tabIndex;
 	};
 	/**
+	 * 获取tabid
+	 * @param {String} 标题
+	 */
+	Tab.prototype.getTabId=function(title){
+		var that = ELEM.titleBox === undefined ? this.init() : this,
+			tabId = -1;
+		ELEM.titleBox.find('li').each(function(i, e) {
+			var $cite = $(this).children('cite');
+			if($cite.text() === title) {
+				tabId = $(this).attr('lay-id');
+			};
+		});
+		return tabId;
+	};
+	/**
+	 * 刷新指定的选项卡
+	 */
+	Tab.prototype.refreshTab=function(){
+		
+	};
+	/**
 	 * 添加选择卡，如果选择卡存在则获取焦点
 	 * @param {Object} data
 	 */
@@ -115,7 +136,8 @@ layui.define(['element', 'common'], function(exports) {
 			//添加tab
 			element.tabAdd(ELEM.tabFilter, {
 				title: title,
-				content: content
+				content: content,
+				id:new Date().getTime()
 			});
 			//iframe 自适应
 			ELEM.contentBox.find('iframe[data-id=' + globalTabIdIndex + ']').each(function() {
@@ -124,16 +146,16 @@ layui.define(['element', 'common'], function(exports) {
 			if(_config.closed) {
 				//监听关闭事件
 				ELEM.titleBox.find('li').children('i.layui-tab-close[data-id=' + globalTabIdIndex + ']').on('click', function() {
-					element.tabDelete(ELEM.tabFilter, $(this).parent('li').index()).init();
+					element.tabDelete(ELEM.tabFilter, $(this).parent('li').attr('lay-id')).init();
 					if(_config.contextMenu) {
 						$(document).find('div.uiba-contextmenu').remove(); //移除右键菜单dom
 					}
 				});
 			};
 			//切换到当前打开的选项卡
-			element.tabChange(ELEM.tabFilter, ELEM.titleBox.find('li').length - 1);
+			element.tabChange(ELEM.tabFilter, that.getTabId(data.title));
 		} else {
-			element.tabChange(ELEM.tabFilter, tabIndex);
+			element.tabChange(ELEM.tabFilter, that.getTabId(data.title));
 			//自动刷新
 			if(_config.autoRefresh) {
 				_config.elem.find('div.layui-tab-content > div').eq(tabIndex).children('iframe')[0].contentWindow.location.reload();
@@ -175,7 +197,7 @@ layui.define(['element', 'common'], function(exports) {
 				//获取当前点击选项卡的id值
 				var id = $($target).find('i.layui-tab-close').data('id');
 				//获取当前点击选项卡的索引值
-				var clickIndex = $($target).index();
+				var clickIndex = $($target).attr('lay-id');
 				var $context = $(document).find('div.admin-contextmenu');
 				if($context.length > 0) {
 					$context.eq(0).children('ul').children('li').each(function() {
@@ -200,7 +222,7 @@ layui.define(['element', 'common'], function(exports) {
 										var $t = $(this);
 										var id1 = $t.find('i.layui-tab-close').data('id');
 										if(id1 != id && id1 !== undefined) {
-											element.tabDelete(ELEM.tabFilter, $t.index());
+											element.tabDelete(ELEM.tabFilter, $t.attr('lay-id'));
 										}
 									});
 									break;
@@ -208,7 +230,7 @@ layui.define(['element', 'common'], function(exports) {
 									ELEM.titleBox.children('li').each(function() {
 										var $t = $(this);
 										if($t.index() !== 0) {
-											element.tabDelete(ELEM.tabFilter, $t.index());
+											element.tabDelete(ELEM.tabFilter, $t.attr('lay-id'));
 										}
 									});
 									break;
