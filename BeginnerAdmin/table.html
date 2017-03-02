@@ -425,8 +425,8 @@
 			layui.use(['icheck', 'laypage', 'layer', 'form'], function() {
 				var $ = layui.jquery,
 					laypage = layui.laypage,
-					layerTips = parent.layer === undefined ? layui.layer : parent.layer,//获取父窗口的layer对象
-					layer = layui.layer;
+					layerTips = parent.layer === undefined ? layui.layer : parent.layer, //获取父窗口的layer对象
+					layer = layui.layer; //获取当前窗口的layer对象
 				$('input').iCheck({
 					checkboxClass: 'icheckbox_flat-green'
 				});
@@ -446,10 +446,14 @@
 				$('#search').on('click', function() {
 					parent.layer.alert('你点击了搜索按钮')
 				});
+
+				var addBoxIndex = -1;
 				$('#add').on('click', function() {
+					if(addBoxIndex!==-1)
+						return;
 					//本表单通过ajax加载 --以模板的形式，当然你也可以直接写在页面上读取
 					$.get('temp/edit-form.html', null, function(form) {
-						layer.open({
+						addBoxIndex = layer.open({
 							type: 1,
 							title: '添加表单',
 							content: form,
@@ -501,6 +505,9 @@
 									return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。									
 								});
 								//console.log(layero, index);
+							}
+							,end:function(){
+								addBoxIndex=-1;
 							}
 						});
 					});
