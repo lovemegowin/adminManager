@@ -87,12 +87,6 @@ layui.define(['element', 'common'], function(exports) {
 		return tabId;
 	};
 	/**
-	 * 刷新指定的选项卡
-	 */
-	Tab.prototype.refreshTab=function(){
-		
-	};
-	/**
 	 * 添加选择卡，如果选择卡存在则获取焦点
 	 * @param {Object} data
 	 */

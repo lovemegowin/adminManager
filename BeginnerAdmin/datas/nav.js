@@ -19,10 +19,6 @@ var navs = [{
 		"icon": "&#xe609;",
 		"href": "nav.html"
 	}, {
-		"title": "Tab选项卡",
-		"icon": "&#xe62a;",
-		"href": "tab.html"
-	}, {
 		"title": "辅助性元素",
 		"icon": "&#xe60c;",
 		"href": "auxiliar.html"
@@ -39,6 +35,10 @@ var navs = [{
 		"title": "Navbar组件",
 		"icon": "fa-navicon",
 		"href": "navbar.html"
+	}, {
+		"title": "Tab组件",
+		"icon": "&#xe62a;",
+		"href": "tab.html"
 	}, {
 		"title": "Laytpl+Laypage",
 		"icon": "&#xe628;",
