@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>btable</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+
+		<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+		<style>
+			.btable {
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+			
+			.btable .layui-form-checkbox {
+				margin-top: 0;
+				height: 20px;
+				line-height: 20px;
+			}
+			
+			.btable .layui-table {
+				/*margin: 5px;*/
+			}
+			
+			.btable .layui-table td {
+				padding: 6px 15px;
+			}
+			.btable .layui-laypage{
+				margin: 5px 0 0 5px;
+			}
+			.btable .btable-paged {
+				width: 100%;
+				background-color: #f2f2f2;
+				position: absolute;
+				bottom: 0;
+			}
+		</style>
+	</head>
+
+	<body style=" background-color: gainsboro;">
+		
+		<div style="width: 800px;height: 600px; margin:50px auto; background-color: white;">
+			<blockquote class="layui-elem-quote">
+				<button type="button" class="layui-btn" id="getAll">获取选择的数据</button>
+			</blockquote>
+			<div id="content" style="width: 100%;height: 532px;"></div>
+		</div>
+
+		<script type="text/javascript" src="plugins/layui/layui.js"></script>
+		<script>
+			layui.config({
+				base: 'js/'
+			}).use(['btable'], function() {
+				var btable = layui.btable(),
+				$=layui.jquery;
+
+				btable.set({
+					elem: '#content',
+					url: 'datas/laytpl_laypage_data.json',
+					columns: [{
+						fieldName: '昵称',
+						field: 'name'
+					}, {
+						fieldName: '加入时间',
+						field: 'createtime'
+					}, {
+						fieldName: '年龄',
+						field: 'age'
+					}],
+					checkbox: true,
+					paged:true,
+					singleSelect:true
+				});
+				btable.render();
+				$('#getAll').on('click',function(){
+					
+					btable.getSelected(function(t){
+						console.log(t);
+					});
+					
+				});
+			});
+		</script>
+	</body>
+
+</html>
