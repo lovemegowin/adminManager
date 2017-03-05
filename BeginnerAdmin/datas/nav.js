@@ -28,9 +28,9 @@ var navs = [{
 	"icon": "fa-cogs",
 	"spread": false,
 	"children": [{
-		"title": "Datatable",
+		"title": "BTable",
 		"icon": "fa-table",
-		"href": "begtable.html"
+		"href": "btable.html"
 	}, {
 		"title": "Navbar组件",
 		"icon": "fa-navicon",

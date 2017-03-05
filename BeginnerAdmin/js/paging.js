@@ -37,7 +37,7 @@ layui.define(['layer', 'laypage', 'laytpl'], function(exports) {
 	/**
 	 * 版本号
 	 */
-	Paging.prototype.v = '1.0.1';
+	Paging.prototype.v = '1.0.2';
 
 	/**
 	 * 设置
@@ -174,7 +174,6 @@ layui.define(['layer', 'laypage', 'laytpl'], function(exports) {
 	 */
 	function throwError(msg) {
 		throw new Error(msg);
-		return;
 	};
 
 	var paging = new Paging();
