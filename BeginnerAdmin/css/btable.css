@@ -12,6 +12,7 @@
 
     .btable .layui-table {
         /*margin: 5px;*/
+       margin-bottom: 38px;
     }
 
         .btable .layui-table td {
@@ -39,6 +40,6 @@
     .btable .btable-paged {
         width: 100%;
         background-color: #f2f2f2;
-        position: absolute;
+        position:fixed;
         bottom: 0;
     }
