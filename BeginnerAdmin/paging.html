@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 	<head>
@@ -208,6 +208,17 @@
 									<blockquote class="layui-elem-quote">serverError:function(xhr,status,error){}</blockquote>
 								</td>
 							</tr>
+                            <tr>
+                                <td style="text-align: center;">renderBefore</td>
+                                <td style="text-align: center;">function</td>
+                                <td style="text-align: center;">undefined</td>
+                                <td>
+                                    <p>数据渲染之前发生 v0.2.0+</p>
+                                    <blockquote class="layui-elem-quote">
+                                        serverError:renderBefore(html, function (formatHtml) {});                                        
+                                    </blockquote>
+                                </td>
+                            </tr>
 						</tbody>
 					</table>
 				</div>
@@ -254,7 +265,7 @@
 					<p>请严格按照以下数据结构设置数据</p>
 					<pre class="layui-code">
 						{
-    "code": 0,
+    "rel": true,
     "msg": "获取成功",
     "list": [
         {
