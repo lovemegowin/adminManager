@@ -318,8 +318,9 @@
 				var $ = layui.jquery,
 					paging = layui.paging();
 
-				paging.init({
-					url: 'datas/laytpl_laypage_data.json', //地址
+                paging.init({
+                    openWait: true,
+                    url: 'datas/laytpl_laypage_data.json?v=' + new Date().getTime(), //地址
 					elem: '#con', //内容容器
 					type:'post',
 					params: { //发送到服务端的参数

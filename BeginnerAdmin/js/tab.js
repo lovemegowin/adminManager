@@ -7,13 +7,15 @@ layui.define(['element', 'common'], function (exports) {
         element = layui.element(),
         commo = layui.common,
         globalTabIdIndex = 0,
+        layer = layui.layer,
         Tab = function () {
             this.config = {
                 elem: undefined,
                 closed: true, //是否包含删除按钮
                 autoRefresh: false,
                 contextMenu: false,
-                onSwitch: undefined
+                onSwitch: undefined,
+                openWait: true
             };
         };
     var ELEM = {};
@@ -95,7 +97,11 @@ layui.define(['element', 'common'], function (exports) {
         var that = this;
         var _config = that.config;
         var tabIndex = that.exists(data.title);
+        var waitLoadIndex;
         if (tabIndex === -1) {
+            if (_config.openWait) {
+                waitLoadIndex = layer.load(2);
+            }
             //设置只能同时打开多少个tab选项卡
             if (_config.maxSetting !== 'undefined') {
                 var currentTabCount = _config.elem.children('ul.layui-tab-title').children('li').length;
@@ -149,6 +155,13 @@ layui.define(['element', 'common'], function (exports) {
             };
             //切换到当前打开的选项卡
             element.tabChange(ELEM.tabFilter, that.getTabId(data.title));
+
+            ELEM.contentBox.find('iframe[data-id=' + globalTabIdIndex + ']').on('load', function () {
+                //debugger;
+                if (_config.openWait) {
+                    layer.close(waitLoadIndex);
+                }
+            });
         } else {
             element.tabChange(ELEM.tabFilter, that.getTabId(data.title));
             //自动刷新

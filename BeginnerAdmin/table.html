@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 	<head>
@@ -82,8 +82,9 @@
 					layer = layui.layer, //获取当前窗口的layer对象
 					form = layui.form();
 
-				paging.init({
-					url: 'datas/laytpl_laypage_data.json', //地址
+                paging.init({
+                    openWait: true,
+                    url: 'datas/laytpl_laypage_data.json?v=' + new Date().getTime(), //地址
 					elem: '#content', //内容容器
 					params: { //发送到服务端的参数
 					},

@@ -86,6 +86,9 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
             openWait: _config.openWait,
             tempType: 1,
             params: _config.params,
+            fail: _config.onFail,
+            complate: _config.onComplate,
+            serverError: _config.onServerError,
             tempElem: getTpl({
                 columns: _config.columns,
                 checkbox: _config.checkbox,
@@ -264,7 +267,6 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
         var colLength = options.checkbox && !options.singleSelect ? columns.length + 1 : columns.length;
         tpl += '<tr col="' + colLength + '">暂无数据.</tr>';
         tpl += '{{# } }}';
-        //console.log(tpl);
         return tpl;
     }
 

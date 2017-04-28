@@ -35,8 +35,6 @@ layui.config({
         });
     }).resize();
 
-
-
     //设置navbar
     navbar.set({
         spreadOne: true,
@@ -51,6 +49,13 @@ layui.config({
     //监听点击事件
     navbar.on('click(side)', function (data) {
         tab.tabAdd(data.field);
+    });
+    //清除缓存
+    $('#clearCached').on('click', function () {
+        navbar.cleanCached();
+        layer.alert('清除完成!', { icon: 1, title: '系统提示' }, function () {
+            location.reload();//刷新
+        });
     });
 
     $('.admin-side-toggle').on('click', function () {
@@ -98,7 +103,13 @@ layui.config({
         layer.msg('按Esc即可退出全屏');
     });
 
-
+    $('#setting').on('click', function () {
+        tab.tabAdd({
+            href: '/Manage/Account/Setting/',
+            icon: 'fa-gear',
+            title: '设置'
+        });
+    });
 
     //锁屏
     $(document).on('keydown', function () {
@@ -138,8 +149,9 @@ function lock($, layer) {
         success: function (layero, lockIndex) {
             isShowLock = true;
             //给显示用户名赋值
-            layero.find('div#lockUserName').text('admin');
-            layero.find('input[name=lockPwd]').on('focus', function () {
+            //layero.find('div#lockUserName').text('admin');
+            //layero.find('input[name=username]').val('admin');
+            layero.find('input[name=password]').on('focus', function () {
                 var $this = $(this);
                 if ($this.val() === '输入密码解锁..') {
                     $this.val('').attr('type', 'password');
@@ -154,15 +166,19 @@ function lock($, layer) {
             //在此处可以写一个请求到服务端删除相关身份认证，因为考虑到如果浏览器被强制刷新的时候，身份验证还存在的情况			
             //do something...
             //e.g. 
-			/*
-			 $.post(url,params,callback,'json');
-			 */
+
+            $.getJSON('/Account/Logout', null, function (res) {
+                if (!res.rel) {
+                    layer.msg(res.msg);
+                }
+            }, 'json');
+
             //绑定解锁按钮的点击事件
             layero.find('button#unlock').on('click', function () {
                 var $lockBox = $('div#lock-box');
 
-                var userName = $lockBox.find('div#lockUserName').text();
-                var pwd = $lockBox.find('input[name=lockPwd]').val();
+                var userName = $lockBox.find('input[name=username]').val();
+                var pwd = $lockBox.find('input[name=password]').val();
                 if (pwd === '输入密码解锁..' || pwd.length === 0) {
                     layer.msg('请输入密码..', {
                         icon: 2,
@@ -178,21 +194,22 @@ function lock($, layer) {
 			 * @param {String} 密码
 			 */
             var unlock = function (un, pwd) {
+                console.log(un, pwd);
                 //这里可以使用ajax方法解锁
-				/*$.post('api/xx',{username:un,password:pwd},function(data){
-				 	//验证成功
-					if(data.success){
-						//关闭锁屏层
-						layer.close(lockIndex);
-					}else{
-						layer.msg('密码输入错误..',{icon:2,time:1000});
-					}					
-				},'json');
-				*/
-                isShowLock = false;
+                $.post('/Account/UnLock', { userName: un, password: pwd }, function (res) {
+                    //验证成功
+                    if (res.rel) {
+                        //关闭锁屏层
+                        layer.close(lockIndex);
+                        isShowLock = false;
+                    } else {
+                        layer.msg(res.msg, { icon: 2, time: 1000 });
+                    }
+                }, 'json');
+                //isShowLock = false;
                 //演示：默认输入密码都算成功
                 //关闭锁屏层
-                layer.close(lockIndex);
+                //layer.close(lockIndex);
             };
         }
     });

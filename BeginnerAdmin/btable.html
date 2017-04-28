@@ -21,6 +21,17 @@
     <div style="margin:0px; background-color: white; margin:0 10px;">
         <blockquote class="layui-elem-quote">
             <button type="button" class="layui-btn layui-btn-small" id="getAll"><i class="fa fa-plus" aria-hidden="true"></i> 添加</button>
+            <form class="layui-form" style="float:right;">
+                <div class="layui-form-item" style="margin:0;">
+                    <label class="layui-form-label">名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="name" placeholder="支持模糊查询.." autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux" style="padding:0;">
+                        <button lay-filter="search" class="layui-btn" lay-submit><i class="fa fa-search" aria-hidden="true"></i> 查询</button>
+                    </div>
+                </div>
+            </form>
         </blockquote>
         <div id="content" style="width: 100%;height: 533px;"></div>
     </div>
@@ -29,11 +40,12 @@
     <script>
         layui.config({
             base: 'js/'
-        }).use(['btable'], function () {
+        }).use(['btable','form'], function () {
             var btable = layui.btable(),
                 $ = layui.jquery,
                 layerTips = parent.layer === undefined ? layui.layer : parent.layer, //获取父窗口的layer对象
-                layer = layui.layer; //获取当前窗口的layer对象;
+                layer = layui.layer,//获取当前窗口的layer对象;
+                form = layui.form();
 
             btable.set({
                 openWait:true,
@@ -87,7 +99,11 @@
                 }
             });
             btable.render();
-
+            //监听搜索表单的提交事件
+            form.on('submit(search)', function (data) {
+                btable.get(data.field);
+                return false;
+            });
             $(window).on('resize', function (e) {
                 var $that = $(this);
                 $('#content').height($that.height() - 92);

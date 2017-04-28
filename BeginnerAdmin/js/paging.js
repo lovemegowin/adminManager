@@ -27,7 +27,7 @@ layui.define(['layer', 'laypage', 'laytpl'], function (exports) {
                 pageSize: 15 //分页大小
             },
             success: undefined, //type:function
-            fail: function (msg) { layer.msg(msg, { icon: 2 }); }, //type:function
+            fail: function (res) { layer.msg(res.msg, { icon: 2 }); }, //type:function
             complate: undefined, //type:function
             serverError: function (xhr, status, error) { //ajax的服务错误
                 throwError("错误提示： " + xhr.status + " " + xhr.statusText);
@@ -112,6 +112,8 @@ layui.define(['layer', 'laypage', 'laytpl'], function (exports) {
             data: _config.params,
             dataType: 'json',
             success: function (result, status, xhr) {
+                if (loadIndex !== undefined)
+                    layer.close(loadIndex); //关闭等待层
                 if (result.rel) {
                     //获取模板
                     var tpl = _config.tempType === 0 ? $(_config.tempElem).html() : _config.tempElem;
@@ -158,6 +160,8 @@ layui.define(['layer', 'laypage', 'laytpl'], function (exports) {
                         _config.success(); //渲染成功
                     }
                 } else {
+                    var thLength = $(_config.elem).siblings('thead').find('th').length;
+                    $(_config.elem).html('<tr><td colspan="' + thLength + '" style="text-align:left;">' + result.msg + '</td></tr>');
                     if (_config.fail) {
                         _config.fail(result); //获取数据失败
                     }
@@ -165,8 +169,6 @@ layui.define(['layer', 'laypage', 'laytpl'], function (exports) {
                 if (_config.complate) {
                     _config.complate(); //渲染完成
                 }
-                if (loadIndex !== undefined)
-                    layer.close(loadIndex); //关闭等待层
             },
             error: function (xhr, status, error) {
                 if (loadIndex !== undefined)
