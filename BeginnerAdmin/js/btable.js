@@ -50,7 +50,11 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
         var columns = _config.columns;
         var th = '';
         for (var i = 0; i < columns.length; i++) {
-            th += '<th>' + columns[i].fieldName + '</th>';
+            if (columns[i].sortable) {
+                th += '<th data-name="' + columns[i].field + '">' + columns[i].fieldName + '<div class="btable-order"><div class="up" title="升序"><i class="fa fa-sort-asc" aria-hidden="true"></i></div ><div class="down" title="倒序"><i class="fa fa-sort-desc" aria-hidden="true"></i></div></div></th>';
+            } else {
+                th += '<th>' + columns[i].fieldName + '</th>';
+            }
         }
         if (_config.checkbox && !_config.singleSelect) {
             th = '<th style="width:28px;"><input type="checkbox" lay-filter="allselector" lay-skin="primary" /></th><th style="width:28px;">序号</th>' + th;
@@ -119,6 +123,40 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
                 $('#' + dataId).remove();
             },
             success: function () { //完成的回调
+                //处理排序
+                $(_config.elem).find('thead > tr > th').each(function () {
+                    var $that = $(this);
+                    var field = $that.data('name');
+                    $that.find('div.up').off('click').on('click', function () {
+                        $(this).hide();
+                        $(this).siblings('div.down').show();
+                        $that.siblings('th').each(function () {
+                            if ($(this).attr('data-name')) {
+                                $(this).find('div.up').show();
+                                $(this).find('div.down').show();
+                            }
+                        });
+                        paging.get({
+                            sort: field,
+                            order: 'asc'
+                        });
+                    });
+                    $that.find('div.down').off('click').on('click', function () {
+                        $(this).hide();
+                        $(this).siblings('div.up').show();
+                        $that.siblings('th').each(function () {
+                            if ($(this).attr('data-name')) {
+                                $(this).find('div.up').show();
+                                $(this).find('div.down').show();
+                            }
+                        });
+                        paging.get({
+                            sort: field,
+                            order: 'desc'
+                        });
+                    });
+                });
+                //for (var i = 0; i < columns.length; i++) {
                 //重新渲染复选框
                 form.render('checkbox');
                 form.on('checkbox(allselector)', function (data) {

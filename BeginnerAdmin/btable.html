@@ -39,8 +39,9 @@
     <script type="text/javascript" src="plugins/layui/layui.js"></script>
     <script>
         layui.config({
-            base: 'js/'
-        }).use(['btable','form'], function () {
+            base: 'js/',
+            v: new Date().getTime()
+        }).use(['btable', 'form'], function () {
             var btable = layui.btable(),
                 $ = layui.jquery,
                 layerTips = parent.layer === undefined ? layui.layer : parent.layer, //获取父窗口的layer对象
@@ -48,7 +49,7 @@
                 form = layui.form();
 
             btable.set({
-                openWait:true,
+                openWait: true,
                 elem: '#content',
                 url: 'datas/btable_data.json',
                 pageSize: 3,
@@ -57,10 +58,12 @@
                 },
                 columns: [{
                     fieldName: '昵称',
-                    field: 'name'
+                    field: 'name',
+                    sortable: true
                 }, {
                     fieldName: '加入时间',
-                    field: 'createtime'
+                    field: 'createtime',
+                    sortable: true
                 }, {
                     fieldName: '签名',
                     field: 'sign'
