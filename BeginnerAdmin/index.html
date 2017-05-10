@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 
@@ -37,6 +37,9 @@
 						<li class="layui-nav-item">
 							<a href="javascript:;">清除缓存</a>
 						</li>
+                        <li class="layui-nav-item" id="pay">
+                            <a href="javascript:;">捐赠我</a>
+                        </li>
 						<li class="layui-nav-item">
 							<a href="javascript:;">浏览网站</a>
 						</li>
@@ -132,7 +135,16 @@
 							content: 'video.html',
 							area: ['800px', '500px']
 						});
-					});
+                    });
+                    $('#pay').on('click', function () {
+                        layer.open({
+                            title: false,
+                            type: 1,
+                            content: '<img src="images/xx.png" />',
+                            area: ['500px', '250px'],
+                            shadeClose: true
+                        });
+                    });
 
 				});
 			</script>

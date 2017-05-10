@@ -20,14 +20,17 @@ layui.define(['layer', 'laypage', 'laytpl'], function (exports) {
             params: {}, //获取数据时传递的额外参数
             openWait: false, //加载数据时是否显示等待框 
             tempElem: undefined, //模板容器
-            tempType: 0,
-            paged: true,
+            tempType: 0, //如果等于0则需要设置模板容器，1为提供模板内容
+            paged: true,//是否显示分页组件
             pageConfig: { //参数应该为object类型
                 elem: undefined,
                 pageSize: 15 //分页大小
             },
             success: undefined, //type:function
-            fail: function (res) { layer.msg(res.msg, { icon: 2 }); }, //type:function
+            fail: function (res) {
+                console.log(res.msg);
+                //layer.msg(res.msg, { icon: 2 });
+            }, //type:function
             complate: undefined, //type:function
             serverError: function (xhr, status, error) { //ajax的服务错误
                 throwError("错误提示： " + xhr.status + " " + xhr.statusText);
@@ -37,7 +40,7 @@ layui.define(['layer', 'laypage', 'laytpl'], function (exports) {
 	/**
 	 * 版本号
 	 */
-    Paging.prototype.v = '1.0.2';
+    Paging.prototype.v = '1.0.3';
 
 	/**
 	 * 设置
@@ -122,14 +125,14 @@ layui.define(['layer', 'laypage', 'laytpl'], function (exports) {
                         if (_config.renderBefore) {
                             _config.renderBefore(html, function (formatHtml) {
                                 $(_config.elem).html(formatHtml);
-                            });
+                            }, result.list);
                         }
                         else {
                             $(_config.elem).html(html);
                         }
                     });
                     if (_config.paged) {
-                        if (result.count === null || result.count === 0) {
+                        if (result.count === null || result.count === undefined) {
                             throwError('Paging Error:请返回数据总数！');
                             return;
                         }
@@ -137,7 +140,6 @@ layui.define(['layer', 'laypage', 'laytpl'], function (exports) {
                         var pageSize = _pageConfig.pageSize;
                         var pages = result.count % pageSize == 0 ?
                             (result.count / pageSize) : (result.count / pageSize + 1);
-
                         var defaults = {
                             cont: $(_pageConfig.elem),
                             curr: _config.params.pageIndex,
@@ -154,7 +156,7 @@ layui.define(['layer', 'laypage', 'laytpl'], function (exports) {
                             }
                         };
                         $.extend(defaults, _pageConfig); //参数合并
-                        layui.laypage(defaults);
+                        layui.laypage(defaults); //调用laypage组件渲染分页
                     }
                     if (_config.success) {
                         _config.success(); //渲染成功

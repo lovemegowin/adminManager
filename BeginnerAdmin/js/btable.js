@@ -10,26 +10,23 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
         form = layui.form();
 
     var BTable = function () {
-		/**
-		 *  默认配置 
-		 */
+		//默认配置 
         this.config = {
             elem: undefined, //容器
-            params: {},
-            //data: undefined, //数据源
-            columns: [],
-            openWait: false,
+            params: {},//发送到服务端的额外参数
+            columns: [],//配置的数据列
+            openWait: false,//是否打开等待框
             url: undefined, //数据源地址
             type: 'GET', //读取方式
             even: false, //是否开启偶数行背景
             skin: undefined, //风格样式 ，可选参数 line/row/nob
-            field: 'id', //主键属性名
+            field: 'ID', //主键属性名
             paged: false, //是否显示分页组件
             singleSelect: false, //是否只能选择一行
             checkbox: true, //显示多选
             onSuccess: undefined //渲染成功后的回调
         };
-        this.v = '1.0.0';
+        this.v = '1.0.1';
     };
 	/**
 	 * 配置BTable
@@ -80,9 +77,7 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
             tpl += '<div data-type="paged" class="btable-paged"></div>';
         }
         tpl += '</div>';
-
         $(_config.elem).html(tpl);
-
         paging.init({
             url: _config.url, //地址
             elem: '.btable-content', //内容容器
@@ -105,7 +100,7 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
                 pageSize: _config.pageSize || 15 //分页大小
             },
             //数据渲染之前的处理
-            renderBefore: function (html, callback) {
+            renderBefore: function (html, callback, data) {
                 var dataId = new Date().getTime();
                 //创建临时节点
                 $('body').append('<table id="' + dataId + '" style="display:none;">' + html + '</table>');
@@ -113,11 +108,20 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
                 for (var i = 0; i < columns.length; i++) {
                     if (columns[i].format) {
                         $('#' + dataId).find('tr').each(function () {
+                            var id = $(this).find('input[data-item=id]').val();
                             var $field = $(this).children('td[data-field=' + columns[i].field + ']');
-                            $field.html(columns[i].format($field.text()));
+                            var obj = undefined;
+                            for (var j = 0; j < data.length; j++) {
+                                if (data[j].Id == id || data[j].ID == id || data[j].id == id) {
+                                    obj = data[j];
+                                    break;
+                                }
+                            }
+                            $field.html(columns[i].format(id, obj));
                         });
                     }
                 }
+                //执行回调函数
                 callback($('#' + dataId).find('tbody').html());
                 //删除临时节点
                 $('#' + dataId).remove();
@@ -156,7 +160,6 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
                         });
                     });
                 });
-                //for (var i = 0; i < columns.length; i++) {
                 //重新渲染复选框
                 form.render('checkbox');
                 form.on('checkbox(allselector)', function (data) {
@@ -172,9 +175,6 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
                 if (_config.checkbox) {
                     //绑定选择行事件
                     $(_config.elem).find('tbody.btable-content').children('tr').each(function (e) {
-                        //e.preventDefault();
-                        //e.stopPropagation();
-
                         var $that = $(this);
                         $that.on('click', function () {
                             //只允许选择一行
@@ -268,7 +268,7 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
         var index = 0;
         $tbody.children('tr').each(function () {
             var $that = $(this);
-            var $input = $that.children('td:first-child').children('input')
+            var $input = $that.children('td:first-child').children('input');
             if ($input[0].checked) {
                 dom[index] = $that;
                 ids[index] = $input.data('id');
@@ -295,9 +295,9 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
             tds += '<td data-field="' + columns[i].field + '">{{ item.' + columns[i].field + ' }}</td>';
         }
         if (options.checkbox) {
-            tds = '<td><input type="checkbox" data-id="{{ item.' + options.field + ' }}" lay-skin="primary" /></td><td>{{ (index+1) }}</td>' + tds;
+            tds = '<td><input type="checkbox" data-item="id" data-id="{{ item.' + options.field + ' }}" lay-skin="primary" /></td><td>{{ (index+1) }}</td>' + tds;
         } else {
-            tds = '<td style="display:none;"><input type="hidden" data-id="{{ item.' + options.field + ' }}" name="id" /></td><td>{{ (index+1) }}</td>' + tds;
+            tds = '<td style="display:none;"><input type="hidden" data-item="id" value="{{ item.' + options.field + ' }}" data-id="{{ item.' + options.field + ' }}" name="id" /></td><td>{{ (index+1) }}</td>' + tds;
         }
         tpl += '<tr>' + tds + '</tr>'
         tpl += '{{# }); }}';
