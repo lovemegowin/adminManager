@@ -20,7 +20,7 @@ layui.define(['element', 'common'], function (exports) {
         };
     var ELEM = {};
     //版本号
-    Tab.prototype.v = '0.1.5';
+    Tab.prototype.v = '0.1.6';
 	/**
 	 * 参数设置
 	 * @param {Object} options
@@ -134,11 +134,12 @@ layui.define(['element', 'common'], function (exports) {
             if (_config.closed) {
                 title += '<i class="layui-icon layui-unselect layui-tab-close" data-id="' + globalTabIdIndex + '">&#x1006;</i>';
             }
+            var tabId = new Date().getTime();
             //添加tab
             element.tabAdd(ELEM.tabFilter, {
                 title: title,
                 content: content,
-                id: new Date().getTime()
+                id: tabId
             });
             //iframe 自适应
             ELEM.contentBox.find('iframe[data-id=' + globalTabIdIndex + ']').each(function () {
@@ -147,9 +148,24 @@ layui.define(['element', 'common'], function (exports) {
             if (_config.closed) {
                 //监听关闭事件
                 ELEM.titleBox.find('li').children('i.layui-tab-close[data-id=' + globalTabIdIndex + ']').on('click', function () {
-                    element.tabDelete(ELEM.tabFilter, $(this).parent('li').attr('lay-id')).init();
-                    if (_config.contextMenu) {
-                        $(document).find('div.uiba-contextmenu').remove(); //移除右键菜单dom
+                    if (_config.closeBefore) {//tab关闭之前触发
+                        var flag = _config.closeBefore({
+                            title: data.title,
+                            url: data.href,
+                            id: globalTabIdIndex,
+                            tabId: tabId
+                        });
+                        if (flag) {
+                            element.tabDelete(ELEM.tabFilter, $(this).parent('li').attr('lay-id')).init();
+                            if (_config.contextMenu) {
+                                $(document).find('div.uiba-contextmenu').remove(); //移除右键菜单dom
+                            }
+                        }
+                    } else {
+                        element.tabDelete(ELEM.tabFilter, $(this).parent('li').attr('lay-id')).init();
+                        if (_config.contextMenu) {
+                            $(document).find('div.uiba-contextmenu').remove(); //移除右键菜单dom
+                        }
                     }
                 });
             };
